@@ -11,18 +11,14 @@ public:
 
     void setPosition(const QVector3D &pos);
     void select(bool status = true) { m_selected = status; }
-
-    void draw(QOpenGLShaderProgram *program);
+    void draw(Scene *scene);
 
     bool rayIntersect(const QVector3D &rayOrigin, const QVector3D &ray, double &dist);
 
 private:
-    void generateSphere(int sectors, int stacks);
+    void updateMarix();
 
-    QOpenGLBuffer *m_vbo;
-    QOpenGLBuffer *m_ebo;
-
-    GLuint m_indices;
+    QMatrix4x4 m_modelMatrix;
     GLfloat m_radius;
     QVector3D m_position;
 

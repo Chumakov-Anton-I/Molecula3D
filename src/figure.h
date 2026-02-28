@@ -4,14 +4,7 @@
 #include <QOpenGLFunctions>
 #include <QMatrix4x4>
 
-class QOpenGLBuffer;
-class QOpenGLShaderProgram;
-
-struct Vertex
-{
-    QVector3D p;
-    QVector3D n;
-};
+class Scene;
 
 class Figure : protected QOpenGLFunctions
 {
@@ -27,7 +20,7 @@ public:
 
     virtual void setPosition(const QVector3D &pos) = 0;
 
-    virtual void draw(QOpenGLShaderProgram *program) = 0;
+    virtual void draw(Scene *scene) = 0;
 
     virtual bool rayIntersect(const QVector3D &rayOrigin, const QVector3D &ray, double &dist) { return false; }
 
@@ -40,8 +33,6 @@ public:
     unsigned int id() const { return m_id; }
 
 protected:
-    QMatrix4x4 m_modelMatrix;
-
     bool m_selected = false;
     bool m_visible;
 

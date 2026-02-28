@@ -12,7 +12,7 @@
 
 #include "camera.h"
 
-class QGLBuffer;
+class QOpenGLBuffer;
 class Figure;
 
 class Scene : public QOpenGLWidget, protected QOpenGLFunctions
@@ -23,6 +23,8 @@ public:
     ~Scene();
 
     QSize sizeHint() const override { return QSize(640, 360); }
+
+    void drawSphere(const QMatrix4x4 &matrix, const QVector3D &color);
 
 protected:
     void initializeGL() override;
@@ -38,11 +40,13 @@ signals:
     void sceneChanged();
 
 public slots:
-    void addAtom(const QVector3D &position);
+    void addAtom(const QVector3D &position, double radius = 2.0);
     void clearSelection();
     void deleteSelected();
 
 private:
+    void initSphere();
+
     void rotateScene(const QVector2D &delta);
     void panScene(const QVector2D &delta);
     void zoomScene(float distance);
@@ -61,10 +65,20 @@ private:
     QMatrix4x4 m_viewMatr;
     QMatrix4x4 m_projMatr;
 
+    float m_FOV;
     Camera m_camera;
     QMap<unsigned long, Figure *> m_storage;
     //QList<Figure *> m_selected;
     QList<unsigned long> m_selected;
+
+    QOpenGLBuffer *m_VBOsphere;
+    QOpenGLBuffer *m_EBOsphere;
+    QOpenGLBuffer *m_VBOcone;
+    QOpenGLBuffer *m_EBOcone;
+    QOpenGLBuffer *m_VBOcylinder;
+    QOpenGLBuffer *m_EBOcylinder;
+
+    GLuint m_sphereIndices;
 };
 
 #endif // SCENE_H

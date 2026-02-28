@@ -13,11 +13,13 @@ public:
     explicit DialogAddAtom(QWidget *parent = nullptr);
 
     QVector3D position() const;
+    double radius() const;
 
 private:
     QDoubleSpinBox *m_X;
     QDoubleSpinBox *m_Y;
     QDoubleSpinBox *m_Z;
+    QDoubleSpinBox *m_R;
 };
 
 #endif // DIALOGADDATOM_H

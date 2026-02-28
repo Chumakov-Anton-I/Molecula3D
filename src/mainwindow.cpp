@@ -44,7 +44,7 @@ void MainWindow::slotAdd()
 {
     auto *dlg = new DialogAddAtom(this);
     if (dlg->exec() == QDialog::Accepted)
-        m_scene->addAtom(dlg->position());
+        m_scene->addAtom(dlg->position(), dlg->radius());
     delete dlg;
 }
 

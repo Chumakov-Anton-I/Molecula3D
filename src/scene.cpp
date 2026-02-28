@@ -2,9 +2,16 @@
 #include "figure.h"
 #include "sphere.h"
 
+#include <QOpenGLBuffer>
 #include <QMouseEvent>
 #include <QWheelEvent>
 #include <QKeyEvent>
+
+struct Vertex
+{
+    QVector3D p;
+    QVector3D n;
+};
 
 Scene::Scene(QWidget *parent)
     : QOpenGLWidget(parent)
@@ -12,6 +19,7 @@ Scene::Scene(QWidget *parent)
     setMinimumSize(600, 300);
     setMouseTracking(true);
 
+    m_FOV = 45.0f;
     m_lastID = 0ul;
 
     // enable antialiasing
@@ -24,6 +32,11 @@ Scene::Scene(QWidget *parent)
     setFormat(format);
 
     m_camera.setPositionAndTarget(QVector3D(0.0f, 4.0f, 10.0f), QVector3D());
+
+    m_VBOsphere = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
+    m_EBOsphere = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
+    //m_VBOcone   = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
+    //m_EBOcone   = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
 }
 
 Scene::~Scene()
@@ -32,8 +45,46 @@ Scene::~Scene()
     for (auto it = m_storage.begin(); it != m_storage.end(); ++it)
         delete *it;
     m_storage.clear();
+
+    m_VBOsphere->destroy();
+    m_EBOsphere->destroy();
+    delete m_VBOsphere;
+    delete m_EBOsphere;
+
     doneCurrent();
     qDebug() << "SCENE: removed";
+}
+
+void Scene::drawSphere(const QMatrix4x4 &matrix, const QVector3D &color)
+{
+    m_program.bind();
+    m_VBOsphere->bind();
+    m_EBOsphere->bind();
+
+    m_program.setUniformValue("projMatr", m_projMatr);
+    m_program.setUniformValue("viewMatr", m_viewMatr);
+    m_program.setUniformValue("modelMatr", matrix);
+
+    m_program.setUniformValue("light_pos", m_camera.position());
+    m_program.setUniformValue("obj_color", color);
+
+    m_program.enableAttributeArray("vert_pos");
+    m_program.setAttributeBuffer("vert_pos", GL_FLOAT, 0, 3, sizeof(Vertex));
+
+    m_program.enableAttributeArray("vert_norm");
+    m_program.setAttributeBuffer("vert_norm", GL_FLOAT, sizeof(QVector3D), 3, sizeof(Vertex));
+
+    m_program.setUniformValue("light_color", QVector3D(1.0f, 1.0f, 1.0f));
+    m_program.setUniformValue("alpha", 1.0f);
+
+    glDrawElements(GL_TRIANGLES, m_sphereIndices, GL_UNSIGNED_INT, nullptr);
+
+    m_program.disableAttributeArray("vert_pos");
+    m_program.disableAttributeArray("vert_norm");
+
+    m_VBOsphere->release();
+    m_EBOsphere->release();
+    m_program.release();
 }
 
 void Scene::initializeGL()
@@ -57,6 +108,8 @@ void Scene::initializeGL()
     glEnable(GL_CULL_FACE);
 
     m_viewMatr = m_camera.matrix();
+
+    initSphere();
 }
 
 void Scene::resizeGL(int width, int height)
@@ -64,19 +117,14 @@ void Scene::resizeGL(int width, int height)
     glViewport(0, 0, width, height);
     float aspect = float(width) / float(height ? height : 1);
     m_projMatr.setToIdentity();
-    m_projMatr.perspective(45.0f, aspect, 0.1f, 100.0f);
+    m_projMatr.perspective(m_FOV, aspect, 0.1f, 100.0f);
 }
 
 void Scene::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    m_program.bind();
-    m_program.setUniformValue("projMatr", m_projMatr);
-    m_program.setUniformValue("viewMatr", m_viewMatr);
-    m_program.setUniformValue("light_pos", m_camera.position());
     for (auto item = m_storage.begin(); item != m_storage.end(); ++item)
-        (*item)->draw(&m_program);
-    m_program.release();
+        item.value()->draw(this);
 }
 
 void Scene::mousePressEvent(QMouseEvent *event)
@@ -125,10 +173,10 @@ void Scene::wheelEvent(QWheelEvent *event)
     update();
 }
 
-void Scene::addAtom(const QVector3D &position)
+void Scene::addAtom(const QVector3D &position, double radius)
 {
     clearSelection();
-    m_storage.insert(getID(), new Sphere(2.0f, position));
+    m_storage.insert(getID(), new Sphere(radius, position));
 }
 
 void Scene::clearSelection()
@@ -154,6 +202,69 @@ void Scene::deleteSelected()
     }
     m_selected.clear();
     update();
+}
+
+void Scene::initSphere()
+{
+    int sectors = 36;
+    int stacks = 36;
+    GLfloat x, y, z, xy, u, v;
+    GLfloat du = M_PI / GLfloat(stacks);
+    GLfloat dv = M_PI * 2.0f / GLfloat(sectors);
+
+    int cnt_v = (stacks + 1)*(sectors + 1);
+    m_sphereIndices = 6*sectors*(stacks - 1);
+
+    Vertex *data = new Vertex[cnt_v];
+    int idx = 0;
+    for (int i = 0; i <= stacks; ++i) {
+        u = M_PI / 2.0f - du * i;
+        xy = std::cos(u);
+        z  = std::sin(u);
+        for (int j = 0; j <= sectors; ++j) {
+            v = dv * j;
+            x = xy * std::cos(v);
+            y = xy * std::sin(v);
+            data[idx++] = { QVector3D(x, y, z), QVector3D(x, y, z) };
+        }
+    }
+
+    GLuint *indices = new GLuint[m_sphereIndices];
+    GLuint k1, k2;
+    idx = 0;
+    for (int i = 0; i < stacks; ++i) {
+        k1 = (sectors + 1) * i;
+        k2 = k1 + stacks + 1;
+        for (int j = 0; j < sectors; ++j) {
+            indices[idx++] = k1;
+            indices[idx++] = k2;
+            if (i == 0)
+                indices[idx++] = k2 + 1;
+            else {
+                indices[idx++] = k1 + 1;
+                if (i != (stacks - 1)) {
+                    indices[idx++] = k1 + 1;
+                    indices[idx++] = k2;
+                    indices[idx++] = k2 + 1;
+                }
+            }
+            k1++;
+            k2++;
+        }
+    }
+
+    m_VBOsphere->create();
+    m_VBOsphere->bind();
+    m_VBOsphere->allocate(data, cnt_v*sizeof(Vertex));
+    m_VBOsphere->setUsagePattern(QOpenGLBuffer::StaticDraw);
+
+    m_EBOsphere->create();
+    m_EBOsphere->bind();
+    m_EBOsphere->allocate(indices, m_sphereIndices*sizeof(GLuint));
+    m_EBOsphere->setUsagePattern(QOpenGLBuffer::StaticDraw);
+
+    delete[] data;
+    delete[] indices;
 }
 
 void Scene::rotateScene(const QVector2D &delta)
