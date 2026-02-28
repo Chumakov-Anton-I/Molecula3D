@@ -14,6 +14,7 @@
 
 class QOpenGLBuffer;
 class Figure;
+class Scene;
 
 class Canvas3D : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -22,9 +23,14 @@ public:
     explicit Canvas3D(QWidget *parent = nullptr);
     ~Canvas3D();
 
+    void setScene(Scene *scene);
+
     QSize sizeHint() const override { return QSize(640, 360); }
 
     void drawSphere(const QMatrix4x4 &matrix, const QVector3D &color);
+
+signals:
+    void querySelection(const QVector3D &ray, const QVector3D &origin);
 
 protected:
     void initializeGL() override;
@@ -36,14 +42,6 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
 
-signals:
-    void sceneChanged();
-
-public slots:
-    void addAtom(const QVector3D &position, double radius = 2.0);
-    void clearSelection();
-    void deleteSelected();
-
 private:
     void initSphere();
 
@@ -51,11 +49,9 @@ private:
     void panScene(const QVector2D &delta);
     void zoomScene(float distance);
 
-    void selectObject(const QPointF &p);
-
     QVector3D getRay(const QPointF &p);
-    unsigned long getID();
-    unsigned long m_lastID;
+
+    Scene *m_scene;
 
     QPointF m_mousePosition;
     bool m_modeRotateView = false;
@@ -67,8 +63,6 @@ private:
 
     float m_FOV;
     Camera m_camera;
-    QMap<unsigned long, Figure *> m_storage;
-    QList<unsigned long> m_selected;
 
     QOpenGLBuffer *m_VBOsphere;
     QOpenGLBuffer *m_EBOsphere;

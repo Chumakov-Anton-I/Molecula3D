@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "canvas3d.h"
+#include "scene.h"
 #include "dialogaddatom.h"
+#include "sphere.h"
 
 #include <QVBoxLayout>
 #include <QSplitter>
@@ -21,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     // right bar - scene
     m_view = new Canvas3D;
+    m_scene = new Scene;
+    m_view->setScene(m_scene);
     // left bar - tree view
     m_structure = new QTreeView;
     m_structure->setMinimumWidth(96);
@@ -38,13 +42,23 @@ MainWindow::MainWindow(QWidget *parent)
     splitted->setChildrenCollapsible(false);
     splitted->setStretchFactor(0, 0);
     splitted->setStretchFactor(1, 1);
+
+    // connect model <--> view
+    connect(m_scene, &Scene::queryRendering, m_view, QOverload<>::of(&Canvas3D::update));
+    connect(m_view, &Canvas3D::querySelection, m_scene, &Scene::selectWithRay);
+}
+
+MainWindow::~MainWindow()
+{
+    delete m_scene;
 }
 
 void MainWindow::slotAdd()
 {
     auto *dlg = new DialogAddAtom(this);
-    if (dlg->exec() == QDialog::Accepted)
-        m_view->addAtom(dlg->position(), dlg->radius());
+    if (dlg->exec() == QDialog::Accepted) {
+        m_scene->addItem(new Sphere(dlg->radius(), dlg->position()));
+    }
     delete dlg;
 }
 
@@ -52,10 +66,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key()) {
     case Qt::Key_Escape:
-        m_view->clearSelection();
+        m_scene->clearSelection();
         break;
     case Qt::Key_Delete:
-        m_view->deleteSelected();
+        m_scene->deleteSelected();
         break;
     default:
         break;
@@ -68,7 +82,7 @@ void MainWindow::makeActions()
     connect(m_actAddItem, &QAction::triggered, this, &MainWindow::slotAdd);
 
     m_actRemoveItem = new QAction(tr("Remove"), this);
-    connect(m_actRemoveItem, &QAction::triggered, m_view, &Canvas3D::deleteSelected);
+    connect(m_actRemoveItem, &QAction::triggered, m_scene, &Scene::deleteSelected);
 
     //m_actResetView = new QAction(tr("Reset view"), this);
     //connect(m_actResetView, &QAction::triggered, m_scene, &Scene::resetView);

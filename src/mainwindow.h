@@ -4,6 +4,7 @@
 #include <QWidget>
 
 class Canvas3D;
+class Scene;
 class QPushButton;
 class QToolBar;
 class QTreeView;
@@ -13,6 +14,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
     
 signals:
     
@@ -25,7 +27,8 @@ protected:
 private:
     void makeActions();
 
-    Canvas3D *m_view;
+    Canvas3D *m_view;   // view
+    Scene    *m_scene;  // model
     QTreeView *m_structure;
 
     QToolBar *m_mainToolbar;
@@ -33,7 +36,6 @@ private:
     QAction *m_actAddItem;
     QAction *m_actRemoveItem;
     QAction *m_actResetView;
-    //QPushButton *m_btnAdd;
 };
 
 #endif // MAINWINDOW_H

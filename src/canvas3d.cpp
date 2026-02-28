@@ -1,6 +1,6 @@
 #include "canvas3d.h"
 #include "figure.h"
-#include "sphere.h"
+#include "scene.h"
 
 #include <QOpenGLBuffer>
 #include <QMouseEvent>
@@ -14,13 +14,12 @@ struct Vertex
 };
 
 Canvas3D::Canvas3D(QWidget *parent)
-    : QOpenGLWidget{parent}
+    : QOpenGLWidget{parent}, m_scene{nullptr}
 {
     setMinimumSize(600, 300);
     setMouseTracking(true);
 
     m_FOV = 45.0f;
-    m_lastID = 0ul;
 
     // enable antialiasing
     QSurfaceFormat format;
@@ -42,17 +41,18 @@ Canvas3D::Canvas3D(QWidget *parent)
 Canvas3D::~Canvas3D()
 {
     makeCurrent();
-    for (auto it = m_storage.begin(); it != m_storage.end(); ++it)
-        delete *it;
-    m_storage.clear();
-
     m_VBOsphere->destroy();
     m_EBOsphere->destroy();
     delete m_VBOsphere;
     delete m_EBOsphere;
 
     doneCurrent();
-    qDebug() << "SCENE: removed";
+    qDebug() << "Canvas3D: removed";
+}
+
+void Canvas3D::setScene(Scene *scene)
+{
+    m_scene = scene;
 }
 
 void Canvas3D::drawSphere(const QMatrix4x4 &matrix, const QVector3D &color)
@@ -123,15 +123,16 @@ void Canvas3D::resizeGL(int width, int height)
 void Canvas3D::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    for (auto item = m_storage.begin(); item != m_storage.end(); ++item)
-        item.value()->draw(this);
+    if (!m_scene)
+        return;
+    m_scene->render(this);
 }
 
 void Canvas3D::mousePressEvent(QMouseEvent *event)
 {
     switch (event->button()) {
     case Qt::LeftButton:
-        selectObject(event->position());
+        emit querySelection(getRay(event->position()), m_camera.position());
         break;
     case Qt::RightButton:
         m_modeRotateView = true;
@@ -170,37 +171,6 @@ void Canvas3D::wheelEvent(QWheelEvent *event)
     float d = event->angleDelta().y() / 120.f;
     zoomScene(d);
     m_viewMatr = m_camera.matrix();
-    update();
-}
-
-void Canvas3D::addAtom(const QVector3D &position, double radius)
-{
-    clearSelection();
-    m_storage.insert(getID(), new Sphere(radius, position));
-}
-
-void Canvas3D::clearSelection()
-{
-    if (m_selected.isEmpty())
-        return;
-    for (auto item = m_selected.begin(); item != m_selected.end(); ++item) {
-        auto obj = m_storage.value(*item);
-        obj->select(false);
-    }
-    m_selected.clear();
-    update();
-}
-
-void Canvas3D::deleteSelected()
-{
-    if (m_selected.isEmpty())
-        return;
-    for (auto it = m_selected.begin(); it != m_selected.end(); ++it) {
-        auto obj = m_storage.value(*it);
-        delete obj;
-        m_storage.remove(*it);
-    }
-    m_selected.clear();
     update();
 }
 
@@ -288,30 +258,6 @@ void Canvas3D::zoomScene(float distance)
     update();
 }
 
-void Canvas3D::selectObject(const QPointF &p)
-{
-    clearSelection();
-    auto ray = getRay(p);
-    double d = 1000.0;  // enough
-    unsigned long s_key = 0ul;    // current selected object
-    bool select = false;
-    for (auto item = m_storage.begin(); item != m_storage.end(); ++item) {
-        double t_dist = 0.0;
-        if ((*item)->rayIntersect(m_camera.position(), ray, t_dist)) {
-            if (t_dist < d) {
-                d = t_dist;
-                s_key = item.key();
-            }
-            select = true;
-        }
-    }
-    if (select) {
-        m_selected.append(s_key);
-        m_storage[s_key]->select(true);
-        update();
-    }
-}
-
 QVector3D Canvas3D::getRay(const QPointF &p)
 {
     float x = (2.0f * p.x()) / width() - 1.0f;
@@ -322,9 +268,4 @@ QVector3D Canvas3D::getRay(const QPointF &p)
     ray_eye.setW( 0.0f);
     QVector3D ray_w(m_viewMatr.inverted()*ray_eye);
     return ray_w.normalized();
-}
-
-unsigned long Canvas3D::getID()
-{
-    return ++m_lastID;
 }
