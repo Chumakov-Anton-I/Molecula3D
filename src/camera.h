@@ -1,6 +1,12 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+/*
+ * The Camera class
+ *
+ * A 3D camera
+ */
+
 #include <QVector3D>
 #include <QMatrix4x4>
 

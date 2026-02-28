@@ -1,6 +1,12 @@
 #ifndef FIGURE_H
 #define FIGURE_H
 
+/*
+ * The Figure class
+ *
+ * An abstract base class of any graphics items of the scene
+ */
+
 #include <QOpenGLFunctions>
 #include <QMatrix4x4>
 

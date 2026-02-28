@@ -5,7 +5,6 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets OpenGL OpenGLWidgets)
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 qt_standard_project_setup()
 
@@ -33,7 +32,6 @@ target_link_libraries(molecula3d PRIVATE
     Qt6::OpenGLWidgets
     opengl32
 )
-target_link_libraries(molecula3d PRIVATE Qt6::Widgets)
 
 qt_add_resources(molecula3d "shaders"
     PREFIX

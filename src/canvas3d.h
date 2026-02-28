@@ -1,6 +1,12 @@
 #ifndef CANVAS3D_H
 #define CANVAS3D_H
 
+/*
+ * The Canvas3D class
+ *
+ * A 3D viewport which implements the View component of the MVC-architecture
+ */
+
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>

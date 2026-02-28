@@ -1,6 +1,8 @@
 #ifndef DIALOGADDATOM_H
 #define DIALOGADDATOM_H
 
+// A temporary dialog which adds an item to the scene
+
 #include <QDialog>
 #include <QVector3D>
 
