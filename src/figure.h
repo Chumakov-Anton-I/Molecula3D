@@ -4,7 +4,7 @@
 #include <QOpenGLFunctions>
 #include <QMatrix4x4>
 
-class Scene;
+class Canvas3D;
 
 class Figure : protected QOpenGLFunctions
 {
@@ -20,7 +20,7 @@ public:
 
     virtual void setPosition(const QVector3D &pos) = 0;
 
-    virtual void draw(Scene *scene) = 0;
+    virtual void draw(Canvas3D *canvas) = 0;
 
     virtual bool rayIntersect(const QVector3D &rayOrigin, const QVector3D &ray, double &dist) { return false; }
 

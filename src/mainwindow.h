@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-class Scene;
+class Canvas3D;
 class QPushButton;
 class QToolBar;
 class QTreeView;
@@ -25,7 +25,7 @@ protected:
 private:
     void makeActions();
 
-    Scene *m_scene;
+    Canvas3D *m_view;
     QTreeView *m_structure;
 
     QToolBar *m_mainToolbar;

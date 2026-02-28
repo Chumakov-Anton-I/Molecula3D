@@ -11,7 +11,7 @@ public:
 
     void setPosition(const QVector3D &pos);
     void select(bool status = true) { m_selected = status; }
-    void draw(Scene *scene);
+    void draw(Canvas3D *canvas);
 
     bool rayIntersect(const QVector3D &rayOrigin, const QVector3D &ray, double &dist);
 

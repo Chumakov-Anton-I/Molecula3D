@@ -1,5 +1,5 @@
 #include "sphere.h"
-#include "scene.h"
+#include "canvas3d.h"
 
 #include <QVector3D>
 
@@ -23,12 +23,12 @@ void Sphere::setPosition(const QVector3D &pos)
     updateMarix();
 }
 
-void Sphere::draw(Scene *scene)
+void Sphere::draw(Canvas3D *canvas)
 {
     if (m_selected)
-        scene->drawSphere(m_modelMatrix, m_selectColor);
+        canvas->drawSphere(m_modelMatrix, m_selectColor);
     else
-        scene->drawSphere(m_modelMatrix, m_color);
+        canvas->drawSphere(m_modelMatrix, m_color);
 }
 
 bool Sphere::rayIntersect(const QVector3D &rayOrigin, const QVector3D &ray, double &dist)
