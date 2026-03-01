@@ -39,6 +39,8 @@ qt_add_resources(molecula3d "shaders"
     FILES
         "shaders/vshader.glsl"
         "shaders/fshader.glsl"
+        "shaders/vshader_wframe.glsl"
+        "shaders/fshader_wframe.glsl"
 )
 
 install(TARGETS molecula3d

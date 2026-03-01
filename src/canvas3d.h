@@ -13,8 +13,6 @@
 #include <QMatrix4x4>
 #include <QVector2D>
 #include <QVector3D>
-#include <QList>
-#include <QMap>
 
 #include "camera.h"
 
@@ -33,7 +31,14 @@ public:
 
     QSize sizeHint() const override { return QSize(640, 360); }
 
+    // bodies
     void drawSphere(const QMatrix4x4 &matrix, const QVector3D &color);
+    void drawCone(const QMatrix4x4 &matrix, const QVector3D &color);
+    void drawCylinder(const QMatrix4x4 &matrix, const QVector3D &color);
+
+    // wireframes
+    void drawDot(const QVector3D &position, const QVector3D &color);
+    void drawLineSegment(const QVector3D &v1, const QVector3D &v2, const QVector3D &color);
 
 signals:
     void querySelection(const QVector3D &ray, const QVector3D &origin);
@@ -50,6 +55,8 @@ protected:
 
 private:
     void initSphere();
+    void initCone();
+    void initCylinder();
 
     void rotateScene(const QVector2D &delta);
     void panScene(const QVector2D &delta);
@@ -64,6 +71,8 @@ private:
     bool m_modePanView = false;
 
     QOpenGLShaderProgram m_program;
+    QOpenGLShaderProgram m_progWframe;
+
     QMatrix4x4 m_viewMatr;
     QMatrix4x4 m_projMatr;
 
@@ -78,6 +87,8 @@ private:
     QOpenGLBuffer *m_EBOcylinder;
 
     GLuint m_sphereIndices;
+    GLuint m_coneIndices;
+    GLuint m_cylinderIndices;
 };
 
 #endif // CANVAS3D_H
