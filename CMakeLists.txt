@@ -42,6 +42,12 @@ qt_add_resources(molecula3d "shaders"
         "shaders/vshader_wframe.glsl"
         "shaders/fshader_wframe.glsl"
 )
+qt_add_resources(molecula3d "data"
+    PREFIX
+        "/"
+    FILES
+        "data/elements.json"
+)
 
 install(TARGETS molecula3d
     BUNDLE  DESTINATION .
