@@ -7,6 +7,7 @@
 #include <QVector3D>
 
 class QDoubleSpinBox;
+class QSpinBox;
 
 class DialogAddAtom : public QDialog
 {
@@ -15,13 +16,13 @@ public:
     explicit DialogAddAtom(QWidget *parent = nullptr);
 
     QVector3D position() const;
-    double radius() const;
+    int number() const;
 
 private:
     QDoubleSpinBox *m_X;
     QDoubleSpinBox *m_Y;
     QDoubleSpinBox *m_Z;
-    QDoubleSpinBox *m_R;
+    QSpinBox *m_number;
 };
 
 #endif // DIALOGADDATOM_H

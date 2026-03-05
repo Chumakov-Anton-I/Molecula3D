@@ -17,6 +17,8 @@ qt_add_executable(molecula3d
     src/camera.h src/camera.cpp
     src/dialogaddatom.h src/dialogaddatom.cpp
     src/canvas3d.h src/canvas3d.cpp
+    src/atom.h src/atom.cpp
+    src/defines.h
 )
 
 set_target_properties(molecula3d PROPERTIES

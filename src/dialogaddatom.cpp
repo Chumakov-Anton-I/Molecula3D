@@ -3,6 +3,7 @@
 #include <QFormLayout>
 #include <QDialogButtonBox>
 #include <QDoubleSpinBox>
+#include <QSpinBox>
 #include <QGroupBox>
 #include <QVBoxLayout>
 
@@ -29,14 +30,13 @@ DialogAddAtom::DialogAddAtom(QWidget *parent)
     form->addRow(" Y ", m_Y);
     form->addRow(" Z ", m_Z);
 
-    auto *groupRadius = new QGroupBox(tr("Radius"));
+    auto *groupRadius = new QGroupBox(tr("Element"));
     topLayout->addWidget(groupRadius);
     auto *radLayout = new QVBoxLayout;
     groupRadius->setLayout(radLayout);
-    m_R = new QDoubleSpinBox;
-    m_R->setRange(0.1, 100.0);
-    m_R->setValue(2.0);
-    radLayout->addWidget(m_R);
+    m_number = new QSpinBox;
+    m_number->setRange(1, 118);
+    radLayout->addWidget(m_number);
 
     topLayout->addStretch(1);
 
@@ -54,7 +54,7 @@ QVector3D DialogAddAtom::position() const
     return QVector3D(m_X->value(), m_Y->value(), m_Z->value());
 }
 
-double DialogAddAtom::radius() const
+int DialogAddAtom::number() const
 {
-    return m_R->value();
+    return m_number->value();
 }

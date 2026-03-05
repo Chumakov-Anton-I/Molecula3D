@@ -3,12 +3,25 @@
 
 #include <QVector3D>
 
-Sphere::Sphere(float radius, const QVector3D &position)
-    : m_radius(radius), m_position(position)
+// TODO: replace overloaded ctors to default value arguments
+Sphere::Sphere(const QVector3D &position, float radius, const QVector3D &color)
+    : m_radius(radius), m_position(position), m_color(color)
 {
     updateMarix();
+    m_selectColor = QVector3D(0.0f, 1.0f, 0.0f);
+}
 
-    m_color = QVector3D(1.0f, 0.5f, 0.3f);
+Sphere::Sphere(const QVector3D &position, float radius)
+    : m_radius(radius), m_position(position), m_color(QVector3D(1.0f, 0.5f, 0.3f))
+{
+    updateMarix();
+    m_selectColor = QVector3D(0.0f, 1.0f, 0.0f);
+}
+
+Sphere::Sphere(const QVector3D &position)
+    : m_radius(1.0f), m_position(position), m_color(QVector3D(1.0f, 0.5f, 0.3f))
+{
+    updateMarix();
     m_selectColor = QVector3D(0.0f, 1.0f, 0.0f);
 }
 
@@ -17,10 +30,21 @@ Sphere::~Sphere()
     qDebug() << "SPHERE: removed";
 }
 
+void Sphere::setRadius(float radius)
+{
+    m_radius = radius;
+    updateMarix();
+}
+
 void Sphere::setPosition(const QVector3D &pos)
 {
     m_position = pos;
     updateMarix();
+}
+
+void Sphere::setColor(const QVector3D &color)
+{
+    m_color = color;
 }
 
 void Sphere::draw(Canvas3D *canvas)
