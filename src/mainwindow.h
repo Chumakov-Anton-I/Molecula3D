@@ -40,8 +40,12 @@ private:
 
     QToolBar *m_mainToolbar;
 
+    QAction *m_actNewFile;
+    QAction *m_actOpenFile;
+    QAction *m_actSaveFile;
     QAction *m_actAddItem;
     QAction *m_actRemoveItem;
+    QAction *m_actRemoveItemBranch;
     QAction *m_actResetView;
 };
 

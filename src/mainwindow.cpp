@@ -112,12 +112,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Escape:
         m_scene->clearSelection();
         break;
-    case Qt::Key_Delete:
-        m_scene->deleteSelected();
-        break;
-    case Qt::Key_Insert:    // TODO: move to shortcut of action
-        slotAdd();
-        break;
     default:
         break;
     }
@@ -125,13 +119,30 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::makeActions()
 {
+    m_actNewFile = new QAction(tr("New file..."), this);
+    //connect()
+
+    m_actOpenFile = new QAction(tr("Open"), this);
+    m_actOpenFile->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_O));
+    //connect()
+
+    m_actSaveFile = new QAction(tr("Save"), this);
+    m_actSaveFile->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_S));
+    //connect()
+
     m_actAddItem = new QAction(tr("Add item"), this);
+    m_actAddItem->setShortcut(QKeySequence(Qt::Key_Insert));
     connect(m_actAddItem, &QAction::triggered, this, &MainWindow::slotAdd);
 
     m_actRemoveItem = new QAction(tr("Remove"), this);
+    m_actRemoveItem->setShortcut(QKeySequence(Qt::Key_Delete));
     connect(m_actRemoveItem, &QAction::triggered, m_scene, &Scene::deleteSelected);
 
-    //m_actResetView = new QAction(tr("Reset view"), this);
+    m_actRemoveItemBranch = new QAction(tr("Remove branch"), this);
+    m_actRemoveItemBranch->setShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Delete));
+    //connect()
+
+    m_actResetView = new QAction(tr("Reset view"), this);
     //connect(m_actResetView, &QAction::triggered, m_scene, &Scene::resetView);
 }
 
@@ -148,7 +159,22 @@ void MainWindow::makeMenus()
 {
     // Menu 'File'
     auto *menuFile = menuBar()->addMenu(tr("File"));
+    menuFile->addAction(m_actNewFile);
+    menuFile->addAction(m_actOpenFile);
+    menuFile->addAction(m_actSaveFile);
+    menuFile->addSeparator();
     menuFile->addAction(tr("Quit"), QKeySequence(Qt::CTRL | Qt::Key_Q), qApp, &qApp->exit);
+
+    // Menu 'Edit'
+    auto *menuEdit = menuBar()->addMenu(tr("Edit"));
+    menuEdit->addAction(m_actAddItem);
+    menuEdit->addSeparator();
+    menuEdit->addAction(m_actRemoveItem);
+    menuEdit->addAction(m_actRemoveItemBranch);
+
+    // Menu 'View'
+    auto *menuView = menuBar()->addMenu(tr("View"));
+    menuView->addAction(m_actResetView);
 
     // Menu 'Help'
     auto *menuHelp = menuBar()->addMenu(tr("Help"));
