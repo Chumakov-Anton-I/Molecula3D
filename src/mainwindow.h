@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QWidget>
+#include <QMainWindow>
 #include <QHash>
 
 #include "defines.h"
@@ -11,15 +11,13 @@ class Scene;
 class QToolBar;
 class QTreeView;
 
-class MainWindow : public QWidget
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    
-signals:
-    
+
 public slots:
     void slotAdd();
 

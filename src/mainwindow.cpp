@@ -4,7 +4,7 @@
 #include "dialogaddatom.h"
 #include "atom.h"
 
-#include <QVBoxLayout>
+//#include <QVBoxLayout>
 #include <QSplitter>
 #include <QPushButton>
 #include <QKeyEvent>
@@ -18,29 +18,26 @@
 #include <QJsonArray>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QWidget(parent)
+    : QMainWindow(parent)
 {
     setWindowTitle(tr("Molecula 3D"));
-
-    auto *topLayout = new QVBoxLayout;
-    topLayout->setContentsMargins(1, 1, 1, 1);
-    setLayout(topLayout);
 
     // right bar - scene
     m_view = new Canvas3D;
     m_scene = new Scene;
     m_view->setScene(m_scene);
-    // left bar - tree view
+    // left bar - tree view // TODO: make special widget
     m_structure = new QTreeView;
     m_structure->setMinimumWidth(96);
+    m_structure->setMaximumWidth(256);
     makeActions();
     m_mainToolbar = new QToolBar(tr("Main"));
     m_mainToolbar->addAction(m_actAddItem);
     m_mainToolbar->addAction(m_actRemoveItem);
+    addToolBar(Qt::TopToolBarArea, m_mainToolbar);
 
-    topLayout->addWidget(m_mainToolbar);
     auto *splitted = new QSplitter(Qt::Horizontal);
-    topLayout->addWidget(splitted);
+    setCentralWidget(splitted);
     splitted->addWidget(m_structure);
     splitted->addWidget(m_view);
 
