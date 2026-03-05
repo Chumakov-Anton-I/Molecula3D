@@ -30,7 +30,7 @@ Canvas3D::Canvas3D(QWidget *parent)
     format.setSamples(4);
     setFormat(format);
 
-    m_camera.setPositionAndTarget(QVector3D(0.0f, 4.0f, 10.0f), QVector3D());
+    m_camera.setPositionAndTarget(QVector3D(0.0f, 20.0f, 50.0f), QVector3D());
 
     m_VBOsphere = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
     m_EBOsphere = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
@@ -176,10 +176,6 @@ void Canvas3D::initializeGL()
         qWarning() << "Shader program linking failed:" << m_program.log();
         return;
     }
-    /*if (!m_program.bind()) {
-        qWarning() << "Shader program binding failed:" << m_program.log();
-        return;
-    }*/
     // wireframe shader
     m_progWframe.addShaderFromSourceFile(QOpenGLShader::Vertex,   ":/shaders/vshader_wframe.glsl");
     m_progWframe.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/fshader_wframe.glsl");
@@ -203,7 +199,7 @@ void Canvas3D::resizeGL(int width, int height)
     glViewport(0, 0, width, height);
     float aspect = float(width) / float(height ? height : 1);
     m_projMatr.setToIdentity();
-    m_projMatr.perspective(m_FOV, aspect, 0.1f, 100.0f);
+    m_projMatr.perspective(m_FOV, aspect, 0.1f, 500.0f);
 }
 
 void Canvas3D::paintGL()
