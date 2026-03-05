@@ -4,11 +4,11 @@
 #include "dialogaddatom.h"
 #include "atom.h"
 
-//#include <QVBoxLayout>
 #include <QSplitter>
-#include <QPushButton>
 #include <QKeyEvent>
 #include <QToolBar>
+#include <QMenuBar>
+#include <QMenu>
 #include <QAction>
 #include <QTreeView>
 #include <QFile>
@@ -16,6 +16,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QApplication>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -31,10 +32,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_structure->setMinimumWidth(96);
     m_structure->setMaximumWidth(256);
     makeActions();
-    m_mainToolbar = new QToolBar(tr("Main"));
-    m_mainToolbar->addAction(m_actAddItem);
-    m_mainToolbar->addAction(m_actRemoveItem);
-    addToolBar(Qt::TopToolBarArea, m_mainToolbar);
+    makeToolBars();
+    makeMenus();
 
     auto *splitted = new QSplitter(Qt::Horizontal);
     setCentralWidget(splitted);
@@ -134,4 +133,25 @@ void MainWindow::makeActions()
 
     //m_actResetView = new QAction(tr("Reset view"), this);
     //connect(m_actResetView, &QAction::triggered, m_scene, &Scene::resetView);
+}
+
+void MainWindow::makeToolBars()
+{
+    m_mainToolbar = new QToolBar(tr("Main"));
+    m_mainToolbar->addAction(m_actAddItem);
+    m_mainToolbar->addAction(m_actRemoveItem);
+    addToolBar(Qt::TopToolBarArea, m_mainToolbar);
+    m_mainToolbar->setMovable(false);
+}
+
+void MainWindow::makeMenus()
+{
+    // Menu 'File'
+    auto *menuFile = menuBar()->addMenu(tr("File"));
+    menuFile->addAction(tr("Quit"), QKeySequence(Qt::CTRL | Qt::Key_Q), qApp, &qApp->exit);
+
+    // Menu 'Help'
+    auto *menuHelp = menuBar()->addMenu(tr("Help"));
+    menuHelp->addAction(tr("About"));
+    menuHelp->addAction(tr("About Qt"));
 }

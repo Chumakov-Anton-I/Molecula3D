@@ -29,6 +29,8 @@ protected:
 
 private:
     void makeActions();
+    void makeToolBars();
+    void makeMenus();
 
     QHash<short, Element> m_Table;
 
