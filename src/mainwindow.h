@@ -19,6 +19,10 @@ public:
     ~MainWindow();
 
 public slots:
+    void slotNewFile();
+    void slotOpenFile();
+    void slotSaveFile();
+    void slotSaveFileAs();
     void slotAdd();
 
 private slots:
@@ -43,6 +47,7 @@ private:
     QAction *m_actNewFile;
     QAction *m_actOpenFile;
     QAction *m_actSaveFile;
+    QAction *m_actSaveFileAs;
     QAction *m_actAddItem;
     QAction *m_actRemoveItem;
     QAction *m_actRemoveItemBranch;

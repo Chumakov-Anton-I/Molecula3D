@@ -55,6 +55,26 @@ MainWindow::~MainWindow()
     delete m_scene;
 }
 
+void MainWindow::slotNewFile()
+{
+
+}
+
+void MainWindow::slotOpenFile()
+{
+
+}
+
+void MainWindow::slotSaveFile()
+{
+
+}
+
+void MainWindow::slotSaveFileAs()
+{
+
+}
+
 void MainWindow::slotAdd()
 {
     auto *dlg = new DialogAddAtom(this);
@@ -120,15 +140,19 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 void MainWindow::makeActions()
 {
     m_actNewFile = new QAction(tr("New file..."), this);
-    //connect()
+    connect(m_actNewFile, &QAction::triggered, this, &MainWindow::slotNewFile);
 
     m_actOpenFile = new QAction(tr("Open"), this);
     m_actOpenFile->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_O));
-    //connect()
+    connect(m_actOpenFile, &QAction::triggered, this, &MainWindow::slotOpenFile);
 
     m_actSaveFile = new QAction(tr("Save"), this);
     m_actSaveFile->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_S));
-    //connect()
+    connect(m_actSaveFile, &QAction::triggered, this, &MainWindow::slotSaveFile);
+
+    m_actSaveFileAs = new QAction(tr("Save as..."), this);
+    m_actSaveFileAs->setShortcut(QKeySequence(Qt::Key_F12));
+    connect(m_actSaveFileAs, &QAction::triggered, this, &MainWindow::slotSaveFileAs);
 
     m_actAddItem = new QAction(tr("Add item"), this);
     m_actAddItem->setShortcut(QKeySequence(Qt::Key_Insert));
@@ -162,6 +186,7 @@ void MainWindow::makeMenus()
     menuFile->addAction(m_actNewFile);
     menuFile->addAction(m_actOpenFile);
     menuFile->addAction(m_actSaveFile);
+    menuFile->addAction(m_actSaveFileAs);
     menuFile->addSeparator();
     menuFile->addAction(tr("Quit"), QKeySequence(Qt::CTRL | Qt::Key_Q), qApp, &qApp->exit);
 
