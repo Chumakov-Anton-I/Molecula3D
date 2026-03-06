@@ -2,9 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-//#include <QHash>
-
-//#include "defines.h"
 
 class Canvas3D;
 class Scene;
@@ -29,7 +26,6 @@ public slots:
     void slotAddAtom(Atom *atom);
 
 private slots:
-    //void loadPTable();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
@@ -38,8 +34,6 @@ private:
     void makeActions();
     void makeToolBars();
     void makeMenus();
-
-    //QHash<short, Element> m_Table;
 
     Canvas3D *m_view;   // view
     Scene    *m_scene;  // model

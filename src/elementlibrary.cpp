@@ -29,9 +29,10 @@ ElementLibrary::ElementLibrary(QWidget *parent)
     m_X = new QDoubleSpinBox;
     m_Y = new QDoubleSpinBox;
     m_Z = new QDoubleSpinBox;
-    m_X->setRange(-1000.0, 1000.0);
-    m_Y->setRange(-1000.0, 1000.0);
-    m_Z->setRange(-1000.0, 1000.0);
+    double m = std::numeric_limits<double>::max();
+    m_X->setRange(-m, m);
+    m_Y->setRange(-m, m);
+    m_Z->setRange(-m, m);
 
     form->addRow(" X ", m_X);
     form->addRow(" Y ", m_Y);
@@ -99,7 +100,7 @@ void ElementLibrary::accept()
     QVector3D pos(m_X->value(), m_Y->value(), m_Z->value());
     auto *atom = new Atom(m_database.value(numb), pos);
     setVisible(false);
-    emit createAtom(atom);
+    emit createAtom(atom);  // NB! - this dialog DOES NOT own the new atom instance!
 }
 
 void ElementLibrary::closeEvent(QCloseEvent *event)
