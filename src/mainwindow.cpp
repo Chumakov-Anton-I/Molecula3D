@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "canvas3d.h"
 #include "scene.h"
-#include "dialogaddatom.h"
+#include "elementlibrary.h"
 #include "atom.h"
 
 #include <QSplitter>
@@ -11,17 +11,15 @@
 #include <QMenu>
 #include <QAction>
 #include <QTreeView>
-#include <QFile>
 #include <QTimer>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonArray>
 #include <QApplication>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    setWindowTitle(tr("Molecula 3D"));
+    setWindowTitle(tr("Molecula 3D"));  // TODO: set dynamic name
+
+    m_library = new ElementLibrary(this);
 
     // right bar - scene
     m_view = new Canvas3D;
@@ -47,7 +45,10 @@ MainWindow::MainWindow(QWidget *parent)
     // connect model <--> view
     connect(m_scene, &Scene::queryRendering, m_view, QOverload<>::of(&Canvas3D::update));
     connect(m_view, &Canvas3D::querySelection, m_scene, &Scene::selectWithRay);
-    QTimer::singleShot(500, this, &MainWindow::loadPTable); // load the Periodic System after 0.5 sec
+    // connect library
+    connect(m_library, &ElementLibrary::createAtom, this, &MainWindow::slotAddAtom);
+
+    QTimer::singleShot(500, m_library, &ElementLibrary::init);  // load the Periodic System after 0.5 sec
 }
 
 MainWindow::~MainWindow()
@@ -77,53 +78,12 @@ void MainWindow::slotSaveFileAs()
 
 void MainWindow::slotAdd()
 {
-    auto *dlg = new DialogAddAtom(this);
-    if (dlg->exec() == QDialog::Accepted) {
-        int key = dlg->number();
-        m_scene->addItem(new Atom(m_Table.value(key), dlg->position()));
-    }
-    delete dlg;
+    //
 }
 
-void MainWindow::loadPTable()
+void MainWindow::slotAddAtom(Atom *atom)
 {
-    QFile ptableFile(":/data/elements.json");
-    if (!ptableFile.open(QIODevice::Text | QIODevice::ReadOnly)) {
-        qDebug() << "Can not open file 'data/elements.json'";
-        return;
-    }
-    QByteArray fdata = ptableFile.readAll();
-    ptableFile.close();
-
-    QJsonParseError parse_errors;
-    auto json = QJsonDocument::fromJson(fdata, &parse_errors);
-    if (parse_errors.error != QJsonParseError::NoError) {
-        qDebug() << "Parse error:\n" << parse_errors.errorString();
-        return;
-    }
-    m_Table.reserve(118);   // Nowadays there are just 118 chemical elements
-    auto obj = json.object();
-    auto elems = obj["elements"].toArray();
-    for (auto it = elems.constBegin(); it != elems.constEnd(); ++it) {
-        auto item = it->toObject();
-        auto valence = item["valence"].toArray();
-        QList<int> valences;
-        for (auto vi = valence.constBegin(); vi != valence.constEnd(); ++vi)
-            valences.append(vi->toInt(0));
-        int key = item["number"].toInt();
-        Element e;
-        e.number = key;
-        e.name   = item["name"].toString("Unknown");
-        e.sign   = item["sign"].toString("--");
-        e.group  = item["group"].toInt(0);
-        e.period = item["period"].toInt(0);
-        e.block  = item["block"].toString("--");
-        e.type   = item["class"].toString("--");
-        e.radius = item["radius"].toDouble(10.0);
-        e.electronegativity = item["enegativity"].toDouble(0.0);
-        e.valences = valences;
-        m_Table.insert(key, e);
-    }
+    m_scene->addItem(atom);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -156,7 +116,7 @@ void MainWindow::makeActions()
 
     m_actAddItem = new QAction(tr("Add item"), this);
     m_actAddItem->setShortcut(QKeySequence(Qt::Key_Insert));
-    connect(m_actAddItem, &QAction::triggered, this, &MainWindow::slotAdd);
+    connect(m_actAddItem, &QAction::triggered, m_library, &ElementLibrary::show);
 
     m_actRemoveItem = new QAction(tr("Remove"), this);
     m_actRemoveItem->setShortcut(QKeySequence(Qt::Key_Delete));

@@ -2,12 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QHash>
+//#include <QHash>
 
-#include "defines.h"
+//#include "defines.h"
 
 class Canvas3D;
 class Scene;
+class ElementLibrary;
+class Atom;
 class QToolBar;
 class QTreeView;
 
@@ -24,9 +26,10 @@ public slots:
     void slotSaveFile();
     void slotSaveFileAs();
     void slotAdd();
+    void slotAddAtom(Atom *atom);
 
 private slots:
-    void loadPTable();
+    //void loadPTable();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
@@ -36,10 +39,11 @@ private:
     void makeToolBars();
     void makeMenus();
 
-    QHash<short, Element> m_Table;
+    //QHash<short, Element> m_Table;
 
     Canvas3D *m_view;   // view
     Scene    *m_scene;  // model
+    ElementLibrary *m_library;
     QTreeView *m_structure;
 
     QToolBar *m_mainToolbar;
