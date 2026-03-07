@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 8.4666662 8.4666662"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="icn_delAtom.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="53.821773"
+     inkscape:cx="21.543326"
+     inkscape:cy="21.887053"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid132" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-miterlimit:3.5;stroke-dasharray:none;stroke-opacity:1"
+       id="path243"
+       cx="4.2333331"
+       cy="4.2333331"
+       r="3.3072915" />
+    <path
+       style="color:#000000;fill:#7f0000;fill-opacity:1;stroke-width:1.00012;stroke-dasharray:none"
+       d="M 5.0270831,5.4012608 5.9625264,6.336704 5.0270831,7.2721473 V 7.6463247 H 5.4012605 L 6.3367038,6.7108814 7.2721473,7.646325 H 7.6463246 V 7.2721477 L 6.7108811,6.3367041 7.6463247,5.4012605 V 5.0270831 H 7.2721473 L 6.3367037,5.9625268 5.4012604,5.0270835 H 5.0270831 Z"
+       id="path2170"
+       sodipodi:nodetypes="ccccccccccccccccc" />
+  </g>
+</svg>
