@@ -1,13 +1,13 @@
 #ifndef ELEMENTTILE_H
 #define ELEMENTTILE_H
 
-#include <QWidget>
+#include <QFrame>
 
 #include "defines.h"
 
 class QLabel;
 
-class ElementTile : public QWidget
+class ElementTile : public QFrame
 {
     Q_OBJECT
 public:

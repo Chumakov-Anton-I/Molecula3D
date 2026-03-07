@@ -61,6 +61,12 @@ qt_add_resources(molecula3d "icons"
         "icons/icn_delAtom.svg"
         "icons/icn_openFile.svg"
 )
+qt_add_resources(molecula3d "fonst"
+    PREFIX
+        "/"
+    FILES
+        "fonts/OpenSans-VariableFont_wdth,wght.ttf"
+)
 
 install(TARGETS molecula3d
     BUNDLE  DESTINATION .

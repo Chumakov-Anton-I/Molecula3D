@@ -30,6 +30,7 @@ ElementLibrary::ElementLibrary(QWidget *parent)
     topLayout->addLayout(elementsLayout);
 
     m_PTable = new QListWidget;
+    //m_PTable->set
     elementsLayout->addWidget(m_PTable);
 
     m_eTile = new ElementTile;
