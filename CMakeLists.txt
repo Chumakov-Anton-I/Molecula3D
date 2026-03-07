@@ -53,6 +53,13 @@ qt_add_resources(molecula3d "data"
         "data/colors_cpk.json"
         "data/colors_jmol.json"
 )
+qt_add_resources(molecula3d "icons"
+    PREFIX
+        "/"
+    FILES
+        "icons/icn_addAtom.svg"
+        "icons/icn_delAtom.svg"
+)
 
 install(TARGETS molecula3d
     BUNDLE  DESTINATION .

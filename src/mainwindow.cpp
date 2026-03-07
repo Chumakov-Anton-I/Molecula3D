@@ -115,10 +115,12 @@ void MainWindow::makeActions()
     connect(m_actSaveFileAs, &QAction::triggered, this, &MainWindow::slotSaveFileAs);
 
     m_actAddItem = new QAction(tr("Add item"), this);
+    m_actAddItem->setIcon(QIcon(":/icons/icn_addAtom.svg"));
     m_actAddItem->setShortcut(QKeySequence(Qt::Key_Insert));
     connect(m_actAddItem, &QAction::triggered, m_library, &ElementLibrary::show);
 
     m_actRemoveItem = new QAction(tr("Remove"), this);
+    m_actRemoveItem->setIcon(QIcon(":/icons/icn_delAtom.svg"));
     m_actRemoveItem->setShortcut(QKeySequence(Qt::Key_Delete));
     connect(m_actRemoveItem, &QAction::triggered, m_scene, &Scene::deleteSelected);
 
@@ -128,6 +130,10 @@ void MainWindow::makeActions()
 
     m_actResetView = new QAction(tr("Reset view"), this);
     //connect(m_actResetView, &QAction::triggered, m_scene, &Scene::resetView);
+
+    m_actViewAll = new QAction(tr("View all"), this);
+    m_actViewAll->setShortcut(QKeySequence(Qt::Key_F9));
+    //connect()
 }
 
 void MainWindow::makeToolBars()
@@ -159,10 +165,11 @@ void MainWindow::makeMenus()
 
     // Menu 'View'
     auto *menuView = menuBar()->addMenu(tr("View"));
+    menuView->addAction(m_actViewAll);
     menuView->addAction(m_actResetView);
 
     // Menu 'Help'
     auto *menuHelp = menuBar()->addMenu(tr("Help"));
     menuHelp->addAction(tr("About"));
-    menuHelp->addAction(tr("About Qt"));
+    menuHelp->addAction(tr("About Qt"), qApp, &QApplication::aboutQt);
 }

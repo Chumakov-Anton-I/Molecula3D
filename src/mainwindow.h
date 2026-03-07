@@ -50,6 +50,7 @@ private:
     QAction *m_actRemoveItem;
     QAction *m_actRemoveItemBranch;
     QAction *m_actResetView;
+    QAction *m_actViewAll;
 };
 
 #endif // MAINWINDOW_H
