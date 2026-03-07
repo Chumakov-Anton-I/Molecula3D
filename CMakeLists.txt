@@ -19,6 +19,7 @@ qt_add_executable(molecula3d
     src/atom.h src/atom.cpp
     src/defines.h
     src/elementlibrary.h src/elementlibrary.cpp
+    data/colors_cpk.json
 )
 
 set_target_properties(molecula3d PROPERTIES
@@ -49,6 +50,7 @@ qt_add_resources(molecula3d "data"
         "/"
     FILES
         "data/elements.json"
+        "data/colors_cpk.json"
 )
 
 install(TARGETS molecula3d

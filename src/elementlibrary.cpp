@@ -92,6 +92,26 @@ void ElementLibrary::init()
         e.valences = valences;
         m_database.insert(key, e);
     }
+    QFile colorFile(":/data/colors_cpk.json");
+    if (!colorFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Can not open file 'data/colors_cpk.json'";
+        return;
+    }
+    QByteArray cfdata = colorFile.readAll();
+    colorFile.close();
+    json = QJsonDocument::fromJson(cfdata, &parse_errors);
+    if (parse_errors.error != QJsonParseError::NoError) {
+        qDebug() << "Parse error:\n" << parse_errors.errorString();
+        return;
+    }
+    m_colorbase.clear();
+    m_colorbase.reserve(118);
+    obj = json.object();
+    auto colors = obj["colors"].toArray();
+    for (auto it = colors.constBegin(); it != colors.constEnd(); ++it) {
+        auto item = it->toObject();
+        m_colorbase.insert(item["numb"].toInt(), item["color"].toString());    // "#1F2209"
+    }
 }
 
 void ElementLibrary::accept()
@@ -99,6 +119,8 @@ void ElementLibrary::accept()
     int numb = m_number->value();
     QVector3D pos(m_X->value(), m_Y->value(), m_Z->value());
     auto *atom = new Atom(m_database.value(numb), pos);
+    QColor color(m_colorbase.value(numb));
+    atom->setColor(QVector3D(color.redF(), color.greenF(), color.blueF()));
     setVisible(false);
     emit createAtom(atom);  // NB! - this dialog DOES NOT own the new atom instance!
 }

@@ -29,6 +29,7 @@ protected:
 
 private:
     QHash<int, Element> m_database;
+    QHash<int, QString> m_colorbase;
     QDoubleSpinBox *m_X;
     QDoubleSpinBox *m_Y;
     QDoubleSpinBox *m_Z;
