@@ -6,9 +6,12 @@
 
 #include "defines.h"
 
+class QListWidget;
+class QListWidgetItem;
 class QDoubleSpinBox;
 class QSpinBox;
 class Atom;
+class ElementTile;
 
 class ElementLibrary : public QDialog
 {
@@ -19,6 +22,9 @@ public:
 public slots:
     void init();
     void accept();
+
+private slots:
+    void selectElement(QListWidgetItem *item);
 
 signals:
     void createAtom(Atom *newAtom);
@@ -34,6 +40,8 @@ private:
     QDoubleSpinBox *m_Y;
     QDoubleSpinBox *m_Z;
     QSpinBox *m_number;
+    QListWidget *m_PTable;
+    ElementTile *m_eTile;
 };
 
 #endif // ELEMENTLIBRARY_H

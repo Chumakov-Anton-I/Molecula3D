@@ -1,4 +1,5 @@
 #include "elementlibrary.h"
+#include "elementtile.h"
 #include "atom.h"
 
 #include <QCloseEvent>
@@ -13,6 +14,9 @@
 #include <QSpinBox>
 #include <QGroupBox>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QListWidget>
+#include <QListWidgetItem>
 
 ElementLibrary::ElementLibrary(QWidget *parent)
     : QDialog{parent}
@@ -21,6 +25,15 @@ ElementLibrary::ElementLibrary(QWidget *parent)
 
     auto *topLayout = new QVBoxLayout;
     setLayout(topLayout);
+
+    auto *elementsLayout = new QHBoxLayout;
+    topLayout->addLayout(elementsLayout);
+
+    m_PTable = new QListWidget;
+    elementsLayout->addWidget(m_PTable);
+
+    m_eTile = new ElementTile;
+    elementsLayout->addWidget(m_eTile);
 
     auto *groupPos = new QGroupBox(tr("Position"));
     topLayout->addWidget(groupPos);
@@ -51,6 +64,8 @@ ElementLibrary::ElementLibrary(QWidget *parent)
 
     connect(bbox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(bbox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
+    connect(m_PTable, &QListWidget::itemClicked, this, &ElementLibrary::selectElement);
 }
 
 void ElementLibrary::init()
@@ -83,15 +98,22 @@ void ElementLibrary::init()
         e.number = key;
         e.name   = item["name"].toString("Unknown");
         e.sign   = item["sign"].toString("--");
-        e.group  = item["group"].toInt(0);
-        e.period = item["period"].toInt(0);
+        e.group  = item["group"].toInt();
+        e.period = item["period"].toInt();
         e.block  = item["block"].toString("--");
         e.type   = item["class"].toString("--");
         e.radius = item["radius"].toDouble(10.0);
-        e.electronegativity = item["enegativity"].toDouble(0.0);
+        e.electronegativity = item["enegativity"].toDouble();
         e.valences = valences;
         m_database.insert(key, e);
     }
+
+    for (int i = 1; i <= 118; ++i) {
+        auto e = m_database.value(i);
+        /*auto *eitem =*/ new QListWidgetItem(e.name, m_PTable);
+        //m_PTable->setItem(i - 1, 0, eitem);
+    }
+
     QFile colorFile(":/data/colors_cpk.json");
     if (!colorFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Can not open file 'data/colors_cpk.json'";
@@ -123,6 +145,13 @@ void ElementLibrary::accept()
     atom->setColor(QVector3D(color.redF(), color.greenF(), color.blueF()));
     setVisible(false);
     emit createAtom(atom);  // NB! - this dialog DOES NOT own the new atom instance!
+}
+
+void ElementLibrary::selectElement(QListWidgetItem *item)
+{
+    Q_UNUSED(item)
+    int key = m_PTable->currentRow() + 1;
+    m_eTile->setElement(m_database.value(key));
 }
 
 void ElementLibrary::closeEvent(QCloseEvent *event)
