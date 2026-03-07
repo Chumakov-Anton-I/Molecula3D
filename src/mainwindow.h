@@ -8,7 +8,7 @@ class Scene;
 class ElementLibrary;
 class Atom;
 class QToolBar;
-class QTreeView;
+class StructureView;
 
 class MainWindow : public QMainWindow
 {
@@ -38,7 +38,7 @@ private:
     Canvas3D *m_view;   // view
     Scene    *m_scene;  // model
     ElementLibrary *m_library;
-    QTreeView *m_structure;
+    StructureView *m_structure;
 
     QToolBar *m_mainToolbar;
 

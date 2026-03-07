@@ -3,6 +3,7 @@
 #include "scene.h"
 #include "elementlibrary.h"
 #include "atom.h"
+#include "structureview.h"
 
 #include <QSplitter>
 #include <QKeyEvent>
@@ -10,7 +11,6 @@
 #include <QMenuBar>
 #include <QMenu>
 #include <QAction>
-#include <QTreeView>
 #include <QTimer>
 #include <QApplication>
 
@@ -25,10 +25,9 @@ MainWindow::MainWindow(QWidget *parent)
     m_view = new Canvas3D;
     m_scene = new Scene;
     m_view->setScene(m_scene);
-    // left bar - tree view // TODO: make special widget
-    m_structure = new QTreeView;
-    m_structure->setMinimumWidth(96);
-    m_structure->setMaximumWidth(256);
+    // left bar - tree view
+    m_structure = new StructureView;
+
     makeActions();
     makeToolBars();
     makeMenus();
@@ -141,8 +140,12 @@ void MainWindow::makeToolBars()
 {
     m_mainToolbar = new QToolBar(tr("Main"));
     m_mainToolbar->addAction(m_actOpenFile);
+    m_mainToolbar->addSeparator();
     m_mainToolbar->addAction(m_actAddItem);
     m_mainToolbar->addAction(m_actRemoveItem);
+    m_mainToolbar->addSeparator();
+    m_mainToolbar->addAction(m_actResetView);
+
     addToolBar(Qt::TopToolBarArea, m_mainToolbar);
     m_mainToolbar->setMovable(false);
 }
