@@ -22,6 +22,11 @@ void Scene::addItem(Figure *item)
     m_storage.insert(getID(), item);
 }
 
+Figure *Scene::getItemByIndex(unsigned long index)
+{
+    return m_storage.value(index, nullptr);
+}
+
 void Scene::render(Canvas3D *canvas)
 {
     for (auto item = m_storage.begin(); item != m_storage.end(); ++item)

@@ -210,6 +210,12 @@ void Canvas3D::paintGL()
     m_scene->render(this);
 }
 
+void Canvas3D::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton)
+        emit queryShowInfo(getRay(event->position()), m_camera.position());
+}
+
 void Canvas3D::mousePressEvent(QMouseEvent *event)
 {
     switch (event->button()) {

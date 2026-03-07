@@ -10,6 +10,10 @@ public:
     Atom(const Element &param, const QVector3D &position, Atom *parent = nullptr);
     ~Atom();
 
+    const Element& elementParams() const { return m_params; }
+
+    QString atomID() const { return m_id; }
+
 private:
     QString m_elementName;
     QString m_id;

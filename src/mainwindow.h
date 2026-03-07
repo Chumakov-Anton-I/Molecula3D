@@ -9,6 +9,7 @@ class ElementLibrary;
 class Atom;
 class QToolBar;
 class StructureView;
+class AtomInfo;
 
 class MainWindow : public QMainWindow
 {
@@ -25,6 +26,8 @@ public slots:
     void slotAdd();
     void slotAddAtom(Atom *atom);
 
+    void slotShowAtomInfo(const QVector3D &ray, const QVector3D &origin);
+
 private slots:
 
 protected:
@@ -39,6 +42,7 @@ private:
     Scene    *m_scene;  // model
     ElementLibrary *m_library;
     StructureView *m_structure;
+    AtomInfo *m_atomInfo;
 
     QToolBar *m_mainToolbar;
 

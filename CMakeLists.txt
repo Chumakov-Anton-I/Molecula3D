@@ -21,6 +21,7 @@ qt_add_executable(molecula3d
     src/elementlibrary.h src/elementlibrary.cpp
     src/elementtile.h src/elementtile.cpp
     src/structureview.h src/structureview.cpp
+    src/atominfo.h src/atominfo.cpp
 )
 
 set_target_properties(molecula3d PROPERTIES

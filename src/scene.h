@@ -22,6 +22,8 @@ public:
     ~Scene();
 
     void addItem(Figure *item);
+    Figure* getItemByIndex(unsigned long index);
+    const QList<unsigned long>& selectedItems() const { return m_selected; }
 
     void render(Canvas3D *canvas);
 

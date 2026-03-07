@@ -42,12 +42,14 @@ public:
 
 signals:
     void querySelection(const QVector3D &ray, const QVector3D &origin);
+    void queryShowInfo(const QVector3D &ray, const QVector3D &origin);
 
 protected:
     void initializeGL() override;
     void resizeGL(int width, int height) override;
     void paintGL() override;
 
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;

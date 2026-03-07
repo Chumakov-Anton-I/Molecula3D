@@ -4,6 +4,7 @@
 #include "elementlibrary.h"
 #include "atom.h"
 #include "structureview.h"
+#include "atominfo.h"
 
 #include <QSplitter>
 #include <QKeyEvent>
@@ -20,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle(tr("Molecula 3D"));  // TODO: set dynamic name
 
     m_library = new ElementLibrary(this);
+    m_atomInfo = new AtomInfo(this);
 
     // right bar - scene
     m_view = new Canvas3D;
@@ -44,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     // connect model <--> view
     connect(m_scene, &Scene::queryRendering, m_view, QOverload<>::of(&Canvas3D::update));
     connect(m_view, &Canvas3D::querySelection, m_scene, &Scene::selectWithRay);
+    connect(m_view, &Canvas3D::queryShowInfo, this, &MainWindow::slotShowAtomInfo);
     // connect library
     connect(m_library, &ElementLibrary::createAtom, this, &MainWindow::slotAddAtom);
 
@@ -83,6 +86,23 @@ void MainWindow::slotAdd()
 void MainWindow::slotAddAtom(Atom *atom)
 {
     m_scene->addItem(atom);
+}
+
+void MainWindow::slotShowAtomInfo(const QVector3D &ray, const QVector3D &origin)
+{
+    // 1. recive ray and origin from 3d view; 2. sent ray and origin to scene;
+    // 3. get list of selected items from scene; 4. show dialog if item is OK
+    // TODO: too sophisticated way!
+    m_scene->selectWithRay(ray, origin);
+    auto selected = m_scene->selectedItems();
+    if (selected.isEmpty())
+        return;
+
+    auto item = m_scene->getItemByIndex(selected.at(0));
+    if (item == nullptr)
+        return;
+    m_atomInfo->setAtom(static_cast<Atom*>(item));  // TODO! ALARM!
+    m_atomInfo->show();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
