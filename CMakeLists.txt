@@ -51,6 +51,7 @@ qt_add_resources(molecula3d "data"
     FILES
         "data/elements.json"
         "data/colors_cpk.json"
+        "data/colors_jmol.json"
 )
 
 install(TARGETS molecula3d
