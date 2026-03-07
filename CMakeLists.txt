@@ -59,6 +59,7 @@ qt_add_resources(molecula3d "icons"
     FILES
         "icons/icn_addAtom.svg"
         "icons/icn_delAtom.svg"
+        "icons/icn_openFile.svg"
 )
 
 install(TARGETS molecula3d

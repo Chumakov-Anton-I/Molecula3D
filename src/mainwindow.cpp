@@ -103,6 +103,7 @@ void MainWindow::makeActions()
     connect(m_actNewFile, &QAction::triggered, this, &MainWindow::slotNewFile);
 
     m_actOpenFile = new QAction(tr("Open"), this);
+    m_actOpenFile->setIcon(QIcon(":/icons/icn_openFile.svg"));
     m_actOpenFile->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_O));
     connect(m_actOpenFile, &QAction::triggered, this, &MainWindow::slotOpenFile);
 
@@ -139,6 +140,7 @@ void MainWindow::makeActions()
 void MainWindow::makeToolBars()
 {
     m_mainToolbar = new QToolBar(tr("Main"));
+    m_mainToolbar->addAction(m_actOpenFile);
     m_mainToolbar->addAction(m_actAddItem);
     m_mainToolbar->addAction(m_actRemoveItem);
     addToolBar(Qt::TopToolBarArea, m_mainToolbar);
