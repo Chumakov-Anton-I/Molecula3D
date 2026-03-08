@@ -150,10 +150,10 @@ void Canvas3D::drawLineSegment(const QVector3D &v1, const QVector3D &v2, const Q
     m_progWframe.setUniformValue("obj_color", color);
 
     const QVector3D verts[] = { v1, v2 };
-    m_progWframe.setAttributeArray("vert_pos", GL_FLOAT, verts, 3);
+    m_progWframe.setAttributeArray("vert_pos", verts);
     m_progWframe.enableAttributeArray("ver_pos");
-    glLineWidth(2.0f);
-    glDrawArrays(GL_LINES, 0, 1);
+    glLineWidth(3.0f);
+    glDrawArrays(GL_LINES, 0, 2);
     glLineWidth(1.0f);
     m_progWframe.disableAttributeArray("vert_pos");
     m_progWframe.release();

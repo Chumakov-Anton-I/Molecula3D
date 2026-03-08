@@ -30,4 +30,11 @@ void Atom::select(bool on)
 void Atom::draw(Canvas3D *canvas)
 {
     m_sphere.draw(canvas);
+    double len = 1.5 * m_params.radius/10.0;
+    //canvas->drawLineSegment(QVector3D(0.f, 0.f, 0.f), QVector3D(len, 0.0f, 0.0f), QVector3D(1.0f, 0.0f, 0.0f));
+    //canvas->drawLineSegment(QVector3D(0.f, 0.f, 0.f), QVector3D(0.0f, len, 0.0f), QVector3D(0.0f, 1.0f, 0.0f));
+    //canvas->drawLineSegment(QVector3D(0.f, 0.f, 0.f), QVector3D(0.0f, 0.0f, len), QVector3D(0.0f, 0.0f, 1.0f));
+    canvas->drawDot(QVector3D(len, 0.0f, 0.0f), QVector3D(1.0f, 0.0f, 0.0f));
+    canvas->drawDot(QVector3D(0.0f, len, 0.0f), QVector3D(0.0f, 1.0f, 0.0f));
+    canvas->drawDot(QVector3D(0.0f, 0.0f, len), QVector3D(0.0f, 0.0f, 1.0f));
 }
