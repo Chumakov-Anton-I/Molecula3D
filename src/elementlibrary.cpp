@@ -85,7 +85,7 @@ void ElementLibrary::init()
         qDebug() << "Parse error:\n" << parse_errors.errorString();
         return;
     }
-    m_database.reserve(118);   // Nowadays there are just 118 chemical elements
+    m_database.reserve(118);   // Nowadays (2026) there are just 118 chemical elements
     auto obj = json.object();
     auto elems = obj["elements"].toArray();
     for (auto it = elems.constBegin(); it != elems.constEnd(); ++it) {
@@ -111,8 +111,7 @@ void ElementLibrary::init()
 
     for (int i = 1; i <= 118; ++i) {
         auto e = m_database.value(i);
-        /*auto *eitem =*/ new QListWidgetItem(e.name, m_PTable);
-        //m_PTable->setItem(i - 1, 0, eitem);
+        new QListWidgetItem(e.name, m_PTable);
     }
 
     QFile colorFile(":/data/colors_cpk.json");
@@ -139,7 +138,8 @@ void ElementLibrary::init()
 
 void ElementLibrary::accept()
 {
-    int numb = m_number->value();
+    //int numb = m_number->value();
+    int numb = m_PTable->currentRow() + 1;
     QVector3D pos(m_X->value(), m_Y->value(), m_Z->value());
     auto *atom = new Atom(m_database.value(numb), pos);
     QColor color(m_colorbase.value(numb));

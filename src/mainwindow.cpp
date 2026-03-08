@@ -90,9 +90,9 @@ void MainWindow::slotAddAtom(Atom *atom)
 
 void MainWindow::slotShowAtomInfo(const QVector3D &ray, const QVector3D &origin)
 {
+    // TODO: too sophisticated way!
     // 1. recive ray and origin from 3d view; 2. sent ray and origin to scene;
     // 3. get list of selected items from scene; 4. show dialog if item is OK
-    // TODO: too sophisticated way!
     m_scene->selectWithRay(ray, origin);
     auto selected = m_scene->selectedItems();
     if (selected.isEmpty())
@@ -101,8 +101,10 @@ void MainWindow::slotShowAtomInfo(const QVector3D &ray, const QVector3D &origin)
     auto item = m_scene->getItemByIndex(selected.at(0));
     if (item == nullptr)
         return;
-    m_atomInfo->setAtom(static_cast<Atom*>(item));  // TODO! ALARM!
-    m_atomInfo->show();
+    if (item->type() == SceneItem::ItemAtom) {
+        m_atomInfo->setAtom(static_cast<Atom *>(item));  // TODO! ALARM!
+        m_atomInfo->show();
+    }
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)

@@ -6,10 +6,9 @@
 class Sphere : public Figure
 {
 public:
-    explicit Sphere(const QVector3D &position, float radius, const QVector3D &color);
+    Sphere(const QVector3D &position, float radius, const QVector3D &color);
     Sphere(const QVector3D &position, float radius);
-    Sphere(const QVector3D &position);
-    virtual ~Sphere();
+    explicit Sphere(const QVector3D &position);
 
     void setRadius(float radius);
     void setPosition(const QVector3D &pos);

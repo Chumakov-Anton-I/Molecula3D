@@ -11,7 +11,7 @@
 #include <QVector3D>
 #include <QObject>
 
-class Figure;
+class SceneItem;
 class Canvas3D;
 
 class Scene : public QObject
@@ -21,8 +21,8 @@ public:
     Scene();
     ~Scene();
 
-    void addItem(Figure *item);
-    Figure* getItemByIndex(unsigned long index);
+    void addItem(SceneItem *item);
+    SceneItem* getItemByIndex(unsigned long index);
     const QList<unsigned long>& selectedItems() const { return m_selected; }
 
     void render(Canvas3D *canvas);
@@ -39,7 +39,7 @@ signals:
 private:
     unsigned long getID();
     unsigned long m_lastID;
-    QMap<unsigned long, Figure *> m_storage;
+    QMap<unsigned long, SceneItem *> m_storage;
     QList<unsigned long> m_selected;
 };
 

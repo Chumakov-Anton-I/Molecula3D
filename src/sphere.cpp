@@ -25,11 +25,6 @@ Sphere::Sphere(const QVector3D &position)
     m_selectColor = QVector3D(0.0f, 1.0f, 0.0f);
 }
 
-Sphere::~Sphere()
-{
-    qDebug() << "SPHERE: removed";
-}
-
 void Sphere::setRadius(float radius)
 {
     m_radius = radius;

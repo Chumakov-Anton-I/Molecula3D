@@ -1,5 +1,5 @@
 #include "scene.h"
-#include "figure.h"
+#include "sceneitem.h"
 
 unsigned long INVALID_KEY = 0ul;
 
@@ -16,13 +16,13 @@ Scene::~Scene()
     m_storage.clear();
 }
 
-void Scene::addItem(Figure *item)
+void Scene::addItem(SceneItem *item)
 {
     clearSelection();
     m_storage.insert(getID(), item);
 }
 
-Figure *Scene::getItemByIndex(unsigned long index)
+SceneItem *Scene::getItemByIndex(unsigned long index)
 {
     return m_storage.value(index, nullptr);
 }
