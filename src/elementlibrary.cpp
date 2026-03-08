@@ -77,9 +77,8 @@ void ElementLibrary::init()
         return;
     }
     m_database.reserve(118);   // Nowadays (2026) there are just 118 chemical elements
-    auto obj = json.object();
-    auto elems = obj["elements"].toArray();
-    for (auto it = elems.constBegin(); it != elems.constEnd(); ++it) {
+    auto obj = json.array();
+    for (auto it = obj.constBegin(); it != obj.constEnd(); ++it) {
         auto item = it->toObject();
         auto valence = item["valence"].toArray();
         QList<int> valences;
@@ -119,8 +118,8 @@ void ElementLibrary::init()
     }
     m_colorbase.clear();
     m_colorbase.reserve(118);
-    obj = json.object();
-    auto colors = obj["colors"].toArray();
+    auto c_obj = json.object();
+    auto colors = c_obj["colors"].toArray();
     for (auto it = colors.constBegin(); it != colors.constEnd(); ++it) {
         auto item = it->toObject();
         m_colorbase.insert(item["numb"].toInt(), item["color"].toString());    // "#1F2209"
