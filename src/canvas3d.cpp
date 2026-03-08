@@ -69,26 +69,19 @@ void Canvas3D::drawSphere(const QMatrix4x4 &matrix, const QVector3D &color)
     m_VBOsphere->bind();
     m_EBOsphere->bind();
 
-    m_program.setUniformValue("projMatr", m_projMatr);
-    m_program.setUniformValue("viewMatr", m_viewMatr);
     m_program.setUniformValue("modelMatr", matrix);
 
-    m_program.setUniformValue("light_pos", m_camera.lightPosition());
-    m_program.setUniformValue("view_pos", m_camera.position());
     m_program.setUniformValue("material.ambient", color);
     m_program.setUniformValue("material.diffuse", color);
     m_program.setUniformValue("material.specular", QVector3D(0.5f, 0.5f, 0.5f));
     m_program.setUniformValue("material.shininess", 32.0f);
-    //m_program.setUniformValue("obj_color", color);
+    m_program.setUniformValue("alpha", 1.0f);
 
     m_program.enableAttributeArray("vert_pos");
     m_program.setAttributeBuffer("vert_pos", GL_FLOAT, 0, 3, sizeof(Vertex));
 
     m_program.enableAttributeArray("vert_norm");
     m_program.setAttributeBuffer("vert_norm", GL_FLOAT, sizeof(QVector3D), 3, sizeof(Vertex));
-
-    m_program.setUniformValue("light_color", QVector3D(1.0f, 1.0f, 1.0f));
-    m_program.setUniformValue("alpha", 1.0f);
 
     glDrawElements(GL_TRIANGLES, m_sphereIndices, GL_UNSIGNED_INT, nullptr);
 
@@ -111,26 +104,19 @@ void Canvas3D::drawCylinder(const QMatrix4x4 &matrix, const QVector3D &color)
     m_VBOcylinder->bind();
     m_EBOcylinder->bind();
 
-    m_program.setUniformValue("projMatr", m_projMatr);
-    m_program.setUniformValue("viewMatr", m_viewMatr);
     m_program.setUniformValue("modelMatr", matrix);
 
-    m_program.setUniformValue("light_pos", m_camera.position());
-    m_program.setUniformValue("view_pos", m_camera.position());
     m_program.setUniformValue("material.ambient", color);
     m_program.setUniformValue("material.diffuse", color);
     m_program.setUniformValue("material.specular", QVector3D(0.5f, 0.5f, 0.5f));
     m_program.setUniformValue("material.shininess", 64.0f);
-    //m_program.setUniformValue("obj_color", color);
+    m_program.setUniformValue("alpha", 1.0f);
 
     m_program.enableAttributeArray("vert_pos");
     m_program.setAttributeBuffer("vert_pos", GL_FLOAT, 0, 3, sizeof(Vertex));
 
     m_program.enableAttributeArray("vert_norm");
     m_program.setAttributeBuffer("vert_norm", GL_FLOAT, sizeof(QVector3D), 3, sizeof(Vertex));
-
-    m_program.setUniformValue("light_color", QVector3D(1.0f, 1.0f, 1.0f));
-    m_program.setUniformValue("alpha", 1.0f);
 
     glDrawElements(GL_TRIANGLES, m_cylinderIndices, GL_UNSIGNED_INT, nullptr);
 
@@ -217,6 +203,15 @@ void Canvas3D::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     if (!m_scene)
         return;
+    // set values of permanent uniforms
+    m_program.bind();
+    m_program.setUniformValue("projMatr", m_projMatr);
+    m_program.setUniformValue("viewMatr", m_viewMatr);
+    m_program.setUniformValue("light_pos", m_camera.lightPosition());
+    m_program.setUniformValue("view_pos", m_camera.position());
+    m_program.setUniformValue("light_color", QVector3D(1.0f, 1.0f, 1.0f));
+    m_program.release();
+
     m_scene->render(this);
 }
 

@@ -57,7 +57,7 @@ void Camera::lookAt()
     QMatrix4x4 trans;
     trans.translate(-m_position);
     m_matrix = m_rotation * trans;
-    m_lightPosition = m_position - 80.0f*m_left + 60.0f*m_up;
+    m_lightPosition = m_position - 50.0f*m_left + 45.0f*m_up;
 }
 
 void Camera::recalculate()
@@ -69,5 +69,5 @@ void Camera::recalculate()
     QMatrix4x4 trans;
     trans.translate(-m_position);
     m_matrix = m_rotation * trans;
-    m_lightPosition = m_position - 80.0f*m_left + 60.0f*m_up;
+    m_lightPosition = m_position - 50.0f*m_left + 45.0f*m_up;
 }
