@@ -9,6 +9,7 @@
 // TODO: probably, this class has to subclass QAbstractItem
 
 #include <QVector3D>
+#include <QMatrix4x4>
 
 class Canvas3D;
 
@@ -24,7 +25,6 @@ public:
 
     virtual int type() const { return ItemUndefined; }
 
-    virtual void setColor(const QVector3D &color) {}
     virtual void draw(Canvas3D *canvas) = 0;
 
     virtual bool rayIntersect(const QVector3D &rayOrigin, const QVector3D &ray, double &dist) = 0;
@@ -32,6 +32,7 @@ public:
 
 protected:
     QVector3D m_position;
+    QMatrix4x4 m_matrix;
 };
 
 #endif // SCENEITEM_H

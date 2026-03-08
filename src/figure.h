@@ -7,12 +7,11 @@
  * An abstract base class of any graphics items of the scene
  */
 
-#include <QOpenGLFunctions>
 #include <QMatrix4x4>
 
 class Canvas3D;
 
-class Figure : protected QOpenGLFunctions
+class Figure
 {
 public:
     enum FigureType {
@@ -36,13 +35,13 @@ public:
 
     virtual int type() const { return FigureUndefined; }    // RTTI
 
-    unsigned int id() const { return m_id; }
+    //unsigned int id() const { return m_id; }
 
 protected:
     bool m_selected = false;
     bool m_visible;
 
-    unsigned int m_id;
+    //unsigned int m_id;
 };
 
 #endif // FIGURE_H

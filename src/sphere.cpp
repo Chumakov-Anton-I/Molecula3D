@@ -4,7 +4,7 @@
 #include <QVector3D>
 
 // TODO: replace overloaded ctors to default value arguments
-Sphere::Sphere(const QVector3D &position, float radius, const QVector3D &color)
+/*Sphere::Sphere(const QVector3D &position, float radius, const QVector3D &color)
     : m_radius(radius), m_position(position), m_color(color)
 {
     updateMarix();
@@ -22,6 +22,11 @@ Sphere::Sphere(const QVector3D &position)
     : m_radius(1.0f), m_position(position), m_color(QVector3D(1.0f, 0.5f, 0.3f))
 {
     updateMarix();
+    m_selectColor = QVector3D(0.0f, 1.0f, 0.0f);
+}*/
+
+Sphere::Sphere()
+{
     m_selectColor = QVector3D(0.0f, 1.0f, 0.0f);
 }
 
@@ -71,7 +76,7 @@ bool Sphere::rayIntersect(const QVector3D &rayOrigin, const QVector3D &ray, doub
         return true;
     }
 
-    if (bb_c == 0.0) {
+    if (bb_c == 0.0) {  // TODO: use fuzzy comparation
         double t = -b + std::sqrt(bb_c);
         if (t < 0.0)
             return false;

@@ -6,9 +6,10 @@
 class Sphere : public Figure
 {
 public:
-    Sphere(const QVector3D &position, float radius, const QVector3D &color);
+    /*Sphere(const QVector3D &position, float radius, const QVector3D &color);
     Sphere(const QVector3D &position, float radius);
-    explicit Sphere(const QVector3D &position);
+    Sphere(const QVector3D &position);*/
+    explicit Sphere();
 
     void setRadius(float radius);
     void setPosition(const QVector3D &pos);
@@ -19,11 +20,13 @@ public:
 
     bool rayIntersect(const QVector3D &rayOrigin, const QVector3D &ray, double &dist);
 
+    QMatrix4x4 modelMatrix() const { return m_modelMatrix; }
+
 private:
     void updateMarix();
 
     QMatrix4x4 m_modelMatrix;
-    GLfloat m_radius;
+    float m_radius;
     QVector3D m_position;
 
     QVector3D m_color;

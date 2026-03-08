@@ -5,7 +5,7 @@
 #include "defines.h"
 #include "sceneitem.h"
 
-class Atom : public SceneItem   //public Sphere
+class Atom : public SceneItem
 {
 public:
     Atom(const Element &param, const QVector3D &position, Atom *parent = nullptr);
@@ -32,6 +32,8 @@ private:
     Element m_params;
     Atom *m_parent;
     QList<Atom *> m_children;
+
+    bool m_selected = false;
 };
 
 #endif // ATOM_H
