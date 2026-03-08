@@ -11,7 +11,6 @@
 #include <QFormLayout>
 #include <QDialogButtonBox>
 #include <QDoubleSpinBox>
-#include <QSpinBox>
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -51,14 +50,6 @@ ElementLibrary::ElementLibrary(QWidget *parent)
     form->addRow(" X ", m_X);
     form->addRow(" Y ", m_Y);
     form->addRow(" Z ", m_Z);
-
-    auto *groupRadius = new QGroupBox(tr("Element"));
-    topLayout->addWidget(groupRadius);
-    auto *radLayout = new QVBoxLayout;
-    groupRadius->setLayout(radLayout);
-    m_number = new QSpinBox;
-    m_number->setRange(1, 118);
-    radLayout->addWidget(m_number);
 
     auto *bbox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal);
     topLayout->addWidget(bbox);

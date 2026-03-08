@@ -9,7 +9,6 @@
 class QListWidget;
 class QListWidgetItem;
 class QDoubleSpinBox;
-class QSpinBox;
 class Atom;
 class ElementTile;
 
@@ -39,7 +38,6 @@ private:
     QDoubleSpinBox *m_X;
     QDoubleSpinBox *m_Y;
     QDoubleSpinBox *m_Z;
-    QSpinBox *m_number;
     QListWidget *m_PTable;
     ElementTile *m_eTile;
 };
