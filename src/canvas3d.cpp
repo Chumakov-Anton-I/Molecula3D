@@ -73,8 +73,13 @@ void Canvas3D::drawSphere(const QMatrix4x4 &matrix, const QVector3D &color)
     m_program.setUniformValue("viewMatr", m_viewMatr);
     m_program.setUniformValue("modelMatr", matrix);
 
-    m_program.setUniformValue("light_pos", m_camera.position());
-    m_program.setUniformValue("obj_color", color);
+    m_program.setUniformValue("light_pos", m_camera.lightPosition());
+    m_program.setUniformValue("view_pos", m_camera.position());
+    m_program.setUniformValue("material.ambient", color);
+    m_program.setUniformValue("material.diffuse", color);
+    m_program.setUniformValue("material.specular", QVector3D(0.5f, 0.5f, 0.5f));
+    m_program.setUniformValue("material.shininess", 32.0f);
+    //m_program.setUniformValue("obj_color", color);
 
     m_program.enableAttributeArray("vert_pos");
     m_program.setAttributeBuffer("vert_pos", GL_FLOAT, 0, 3, sizeof(Vertex));
@@ -111,7 +116,12 @@ void Canvas3D::drawCylinder(const QMatrix4x4 &matrix, const QVector3D &color)
     m_program.setUniformValue("modelMatr", matrix);
 
     m_program.setUniformValue("light_pos", m_camera.position());
-    m_program.setUniformValue("obj_color", color);
+    m_program.setUniformValue("view_pos", m_camera.position());
+    m_program.setUniformValue("material.ambient", color);
+    m_program.setUniformValue("material.diffuse", color);
+    m_program.setUniformValue("material.specular", QVector3D(0.5f, 0.5f, 0.5f));
+    m_program.setUniformValue("material.shininess", 64.0f);
+    //m_program.setUniformValue("obj_color", color);
 
     m_program.enableAttributeArray("vert_pos");
     m_program.setAttributeBuffer("vert_pos", GL_FLOAT, 0, 3, sizeof(Vertex));

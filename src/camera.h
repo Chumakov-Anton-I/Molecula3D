@@ -25,6 +25,7 @@ public:
 
     const QMatrix4x4& matrix() const { return m_matrix; }
     const QVector3D& position() const { return m_position; }
+    const QVector3D& lightPosition() const { return m_lightPosition; }
 
 private:
     void lookAt();
@@ -36,6 +37,7 @@ private:
     QVector3D m_up;
     QVector3D m_left;
     float m_distance;
+    QVector3D m_lightPosition;
 
     QMatrix4x4 m_matrix;    // view matrix
     QMatrix4x4 m_rotation;
