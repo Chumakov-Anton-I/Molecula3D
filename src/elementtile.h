@@ -2,6 +2,7 @@
 #define ELEMENTTILE_H
 
 #include <QFrame>
+#include <QHash>
 
 #include "defines.h"
 
@@ -22,6 +23,8 @@ private:
     QLabel *m_symbol;
     QLabel *m_name;
     QLabel *m_class;
+
+    QHash<QString, QString> m_colors;
 };
 
 #endif // ELEMENTTILE_H
