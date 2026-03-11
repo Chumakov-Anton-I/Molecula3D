@@ -136,7 +136,7 @@ void Canvas3D::drawDot(const QVector3D &position, const QVector3D &color)
     m_progWframe.setUniformValue("obj_color", color);
 
     m_progWframe.setAttributeValue("vert_pos", position);
-    glPointSize(4.0f);
+    glPointSize(8.0f);
     glDrawArrays(GL_POINTS, 0, 1);
     glPointSize(1.0f);
     m_progWframe.release();

@@ -23,7 +23,7 @@ public slots:
     void accept();
 
 private slots:
-    void selectElement(QListWidgetItem *item);
+    void selectElement();
 
 signals:
     void createAtom(Atom *newAtom);

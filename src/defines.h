@@ -18,4 +18,6 @@ struct Element
     QList<int> valences;
 };
 
+const int LAST_ELEMENT_NUMBER = 118;    // Nowadays (2026) there are just 118 chemical elements
+
 #endif // DEFINES_H

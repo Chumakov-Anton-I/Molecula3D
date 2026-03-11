@@ -19,6 +19,8 @@ public:
 
     void setColor(const QVector3D &color);
 
+    QVector3D position() const { return m_position; }
+
     bool rayIntersect(const QVector3D &rayOrigin, const QVector3D &ray, double &dist);
     void select(bool on = true);
 

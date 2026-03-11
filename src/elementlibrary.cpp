@@ -57,7 +57,7 @@ ElementLibrary::ElementLibrary(QWidget *parent)
     connect(bbox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(bbox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
-    connect(m_PTable, &QListWidget::itemClicked, this, &ElementLibrary::selectElement);
+    connect(m_PTable, &QListWidget::itemSelectionChanged, this, &ElementLibrary::selectElement);
 }
 
 void ElementLibrary::init()
@@ -76,7 +76,7 @@ void ElementLibrary::init()
         qDebug() << "Parse error:\n" << parse_errors.errorString();
         return;
     }
-    m_database.reserve(118);   // Nowadays (2026) there are just 118 chemical elements
+    m_database.reserve(LAST_ELEMENT_NUMBER);
     auto obj = json.array();
     for (auto it = obj.constBegin(); it != obj.constEnd(); ++it) {
         auto item = it->toObject();
@@ -99,10 +99,11 @@ void ElementLibrary::init()
         m_database.insert(key, e);
     }
 
-    for (int i = 1; i <= 118; ++i) {
+    for (int i = 1; i <= LAST_ELEMENT_NUMBER; ++i) {
         auto e = m_database.value(i);
-        new QListWidgetItem(e.name, m_PTable);
+        new QListWidgetItem(QIcon(":/icons/icn_element.svg"), e.name, m_PTable);
     }
+    m_PTable->setCurrentRow(0);
 
     QFile colorFile(":/data/colors_cpk.json");
     if (!colorFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -117,18 +118,17 @@ void ElementLibrary::init()
         return;
     }
     m_colorbase.clear();
-    m_colorbase.reserve(118);
+    m_colorbase.reserve(LAST_ELEMENT_NUMBER);
     auto c_obj = json.object();
     auto colors = c_obj["colors"].toArray();
     for (auto it = colors.constBegin(); it != colors.constEnd(); ++it) {
         auto item = it->toObject();
-        m_colorbase.insert(item["numb"].toInt(), item["color"].toString());    // "#1F2209"
+        m_colorbase.insert(item["numb"].toInt(), item["color"].toString());
     }
 }
 
 void ElementLibrary::accept()
 {
-    //int numb = m_number->value();
     int numb = m_PTable->currentRow() + 1;
     QVector3D pos(m_X->value(), m_Y->value(), m_Z->value());
     auto *atom = new Atom(m_database.value(numb), pos);
@@ -138,9 +138,8 @@ void ElementLibrary::accept()
     emit createAtom(atom);  // NB! - this dialog DOES NOT own the new atom instance!
 }
 
-void ElementLibrary::selectElement(QListWidgetItem *item)
+void ElementLibrary::selectElement()
 {
-    Q_UNUSED(item)
     int key = m_PTable->currentRow() + 1;
     m_eTile->setElement(m_database.value(key));
 }

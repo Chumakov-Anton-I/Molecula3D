@@ -63,6 +63,7 @@ qt_add_resources(molecula3d "icons"
         "icons/icn_addAtom.svg"
         "icons/icn_delAtom.svg"
         "icons/icn_openFile.svg"
+        "icons/icn_element.svg"
 )
 qt_add_resources(molecula3d "fonst"
     PREFIX
