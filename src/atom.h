@@ -26,8 +26,12 @@ public:
 
     void draw(Canvas3D *canvas);
 
+    int valence() const { return m_valence; }
+    void setValence(int valence);
+
 private:
     Sphere m_sphere;
+    int m_valence;
 
     QString m_elementName;
     QString m_id;

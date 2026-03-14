@@ -75,7 +75,7 @@ void Canvas3D::drawSphere(const QMatrix4x4 &matrix, const QVector3D &color)
     m_program.setUniformValue("material.diffuse", color);
     m_program.setUniformValue("material.specular", QVector3D(0.5f, 0.5f, 0.5f));
     m_program.setUniformValue("material.shininess", 32.0f);
-    m_program.setUniformValue("alpha", 1.0f);
+    //m_program.setUniformValue("alpha", 1.0f);
 
     m_program.enableAttributeArray("vert_pos");
     m_program.setAttributeBuffer("vert_pos", GL_FLOAT, 0, 3, sizeof(Vertex));
@@ -110,7 +110,7 @@ void Canvas3D::drawCylinder(const QMatrix4x4 &matrix, const QVector3D &color)
     m_program.setUniformValue("material.diffuse", color);
     m_program.setUniformValue("material.specular", QVector3D(0.5f, 0.5f, 0.5f));
     m_program.setUniformValue("material.shininess", 64.0f);
-    m_program.setUniformValue("alpha", 1.0f);
+    //m_program.setUniformValue("alpha", 1.0f);
 
     m_program.enableAttributeArray("vert_pos");
     m_program.setAttributeBuffer("vert_pos", GL_FLOAT, 0, 3, sizeof(Vertex));
@@ -152,7 +152,7 @@ void Canvas3D::drawLineSegment(const QVector3D &v1, const QVector3D &v2, const Q
     const QVector3D verts[] = { v1, v2 };
     m_progWframe.setAttributeArray("vert_pos", verts);
     m_progWframe.enableAttributeArray("ver_pos");
-    glLineWidth(3.0f);
+    glLineWidth(4.0f);
     glDrawArrays(GL_LINES, 0, 2);
     glLineWidth(1.0f);
     m_progWframe.disableAttributeArray("vert_pos");

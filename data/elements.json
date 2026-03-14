@@ -10,7 +10,8 @@
         "mass"          : [1.00784, 1.00811],
         "radius"        : 53,
         "enegativity"   : 2.20,
-        "valence"       : [1]
+        "valence"       : [1],
+        "valence_max"   : 1
     },
     {
         "number"        : 2,
@@ -23,7 +24,8 @@
         "mass"          : [4.002602],
         "radius"        : 31,
         "enegativity"   : 4.5,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     },
     {
         "number"        : 3,
@@ -36,7 +38,8 @@
         "mass"          : [6.938, 6.997],
         "radius"        : 145,
         "enegativity"   : 0.98,
-        "valence"       : [1]
+        "valence"       : [1],
+        "valence_max"   : 1
     },
     {
         "number"        : 4,
@@ -49,7 +52,8 @@
         "mass"          : [9.012182],
         "radius"        : 112,
         "enegativity"   : 1.57,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 2
     },
     {
         "number"        : 5,
@@ -62,7 +66,8 @@
         "mass"          : [10.806, 10.821],
         "radius"        : 98,
         "enegativity"   : 2.04,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 6,
@@ -75,7 +80,8 @@
         "mass"          : [12.096, 12.0116],
         "radius"        : 70,
         "enegativity"   : 2.55,
-        "valence"       : [2, 4]
+        "valence"       : [2, 4],
+        "valence_max"   : 4
     },
     {
         "number"        : 7,
@@ -88,7 +94,8 @@
         "mass"          : [14.00643, 1.00728],
         "radius"        : 75,
         "enegativity"   : 3.04,
-        "valence"       : [1, 2, 3, 4]
+        "valence"       : [1, 2, 3, 4],
+        "valence_max"   : 4
     },
     {
         "number"        : 8,
@@ -101,7 +108,8 @@
         "mass"          : [15.99903, 15.99977],
         "radius"        : 60,
         "enegativity"   : 3.44,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 2
     },
     {
         "number"        : 9,
@@ -114,7 +122,8 @@
         "mass"          : [18.998403162],
         "radius"        : 73,
         "enegativity"   : 3.98,
-        "valence"       : [1]
+        "valence"       : [1],
+        "valence_max"   : 1
     },
     {
         "number"        : 10,
@@ -127,7 +136,8 @@
         "mass"          : [20.1797],
         "radius"        : 38,
         "enegativity"   : 4.4,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     },
     {
         "number"        : 11,
@@ -140,7 +150,8 @@
         "mass"          : [22.98976928],
         "radius"        : 190,
         "enegativity"   : 0.93,
-        "valence"       : [1]
+        "valence"       : [1],
+        "valence_max"   : 1
     },
     {
         "number"        : 12,
@@ -153,7 +164,8 @@
         "mass"          : [24.304, 24.307],
         "radius"        : 160,
         "enegativity"   : 1.31,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 1
     },
     {
         "number"        : 13,
@@ -166,7 +178,8 @@
         "mass"          : [26.9815386],
         "radius"        : 143,
         "enegativity"   : 1.61,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 14,
@@ -179,7 +192,8 @@
         "mass"          : [28.086],
         "radius"        : 132,
         "enegativity"   : 1.90,
-        "valence"       : [2, 4]
+        "valence"       : [2, 4],
+        "valence_max"   : 4
     },
     {
         "number"        : 15,
@@ -192,7 +206,8 @@
         "mass"          : [30.973762],
         "radius"        : 128,
         "enegativity"   : 2.19,
-        "valence"       : [3, 5]
+        "valence"       : [3, 5],
+        "valence_max"   : 5
     },
     {
         "number"        : 16,
@@ -205,7 +220,8 @@
         "mass"          : [32.059, 32.076],
         "radius"        : 127,
         "enegativity"   : 2.58,
-        "valence"       : [2, 4]
+        "valence"       : [2, 4],
+        "valence_max"   : 4
     },
     {
         "number"        : 17,
@@ -218,7 +234,8 @@
         "mass"          : [35.446, 35.457],
         "radius"        : 99,
         "enegativity"   : 3.16,
-        "valence"       : [1, 3, 5, 7]
+        "valence"       : [1, 3, 5, 7],
+        "valence_max"   : 7
     },
     {
         "number"        : 18,
@@ -231,7 +248,8 @@
         "mass"          : [39.948],
         "radius"        : 71,
         "enegativity"   : 4.3,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     },
     {
         "number"        : 19,
@@ -244,7 +262,8 @@
         "mass"          : [39.0983],
         "radius"        : 235,
         "enegativity"   : 0.82,
-        "valence"       : [1]
+        "valence"       : [1],
+        "valence_max"   : 1
     },
     {
         "number"        : 20,
@@ -257,7 +276,8 @@
         "mass"          : [40.078],
         "radius"        : 197,
         "enegativity"   : 1.00,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 2
     },
     {
         "number"        : 21,
@@ -270,7 +290,8 @@
         "mass"          : [44.955912],
         "radius"        : 162,
         "enegativity"   : 1.36,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 22,
@@ -283,7 +304,8 @@
         "mass"          : [47.867],
         "radius"        : 147,
         "enegativity"   : 1.54,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 23,
@@ -296,7 +318,8 @@
         "mass"          : [50.9415],
         "radius"        : 134,
         "enegativity"   : 1.63,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 24,
@@ -309,7 +332,8 @@
         "mass"          : [51.9961],
         "radius"        : 130,
         "enegativity"   : 1.66,
-        "valence"       : [2, 3, 4, 5, 6]
+        "valence"       : [2, 3, 4, 5, 6],
+        "valence_max"   : 6
     },
     {
         "number"        : 25,
@@ -322,7 +346,8 @@
         "mass"          : [54.938045],
         "radius"        : 127,
         "enegativity"   : 1.55,
-        "valence"       : [7]
+        "valence"       : [7],
+        "valence_max"   : 7
     },
     {
         "number"        : 26,
@@ -335,7 +360,8 @@
         "mass"          : [55.845],
         "radius"        : 140,
         "enegativity"   : 1.83,
-        "valence"       : [7]
+        "valence"       : [7],
+        "valence_max"   : 8
     },
     {
         "number"        : 27,
@@ -348,7 +374,8 @@
         "mass"          : [58.933194],
         "radius"        : 125,
         "enegativity"   : 1.88,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 28,
@@ -361,7 +388,8 @@
         "mass"          : [58.6934],
         "radius"        : 124,
         "enegativity"   : 1.91,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 29,
@@ -374,7 +402,8 @@
         "mass"          : [63.546],
         "radius"        : 128,
         "enegativity"   : 1.90,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 30,
@@ -387,7 +416,8 @@
         "mass"          : [65.38],
         "radius"        : 134,
         "enegativity"   : 1.65,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 2
     },
     {
         "number"        : 31,
@@ -400,7 +430,8 @@
         "mass"          : [69.723],
         "radius"        : 141,
         "enegativity"   : 1.81,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 32,
@@ -413,7 +444,8 @@
         "mass"          : [72.630],
         "radius"        : 122.5,
         "enegativity"   : 2.01,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 33,
@@ -426,7 +458,8 @@
         "mass"          : [74.92160],
         "radius"        : 139,
         "enegativity"   : 2.18,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 34,
@@ -439,7 +472,8 @@
         "mass"          : [78.96],
         "radius"        : 140,
         "enegativity"   : 2.55,
-        "valence"       : [6]
+        "valence"       : [6],
+        "valence_max"   : 6
     },
     {
         "number"        : 35,
@@ -452,7 +486,8 @@
         "mass"          : [79.901, 79.907],
         "radius"        : 119,
         "enegativity"   : 2.96,
-        "valence"       : [7]
+        "valence"       : [7],
+        "valence_max"   : 7
     },
     {
         "number"        : 36,
@@ -465,7 +500,8 @@
         "mass"          : [83.798],
         "radius"        : 198,
         "enegativity"   : 3.0,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 2
     },
     {
         "number"        : 37,
@@ -478,7 +514,8 @@
         "mass"          : [85.4678],
         "radius"        : 248,
         "enegativity"   : 0.82,
-        "valence"       : [1]
+        "valence"       : [1],
+        "valence_max"   : 1
     },
     {
         "number"        : 38,
@@ -491,7 +528,8 @@
         "mass"          : [87.62],
         "radius"        : 215,
         "enegativity"   : 0.95,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 2
     },
     {
         "number"        : 39,
@@ -504,7 +542,8 @@
         "mass"          : [88.90585],
         "radius"        : 178,
         "enegativity"   : 1.22,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 40,
@@ -517,7 +556,8 @@
         "mass"          : [91.224],
         "radius"        : 160,
         "enegativity"   : 1.33,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 41,
@@ -530,7 +570,8 @@
         "mass"          : [92.90638],
         "radius"        : 146,
         "enegativity"   : 1.6,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 42,
@@ -543,7 +584,8 @@
         "mass"          : [95.96],
         "radius"        : 139,
         "enegativity"   : 2.16,
-        "valence"       : [6]
+        "valence"       : [6],
+        "valence_max"   : 6
     },
     {
         "number"        : 43,
@@ -556,7 +598,8 @@
         "mass"          : [97.9072],
         "radius"        : 136,
         "enegativity"   : 1.9,
-        "valence"       : [7]
+        "valence"       : [7],
+        "valence_max"   : 7
     },
     {
         "number"        : 44,
@@ -569,7 +612,8 @@
         "mass"          : [101.07],
         "radius"        : 134,
         "enegativity"   : 2.2,
-        "valence"       : [8]
+        "valence"       : [8],
+        "valence_max"   : 8
     },
     {
         "number"        : 45,
@@ -582,7 +626,8 @@
         "mass"          : [102.90550],
         "radius"        : 134,
         "enegativity"   : 2.28,
-        "valence"       : [7]
+        "valence"       : [7],
+        "valence_max"   : 9
     },
     {
         "number"        : 46,
@@ -595,7 +640,8 @@
         "mass"          : [106.42],
         "radius"        : 137,
         "enegativity"   : 2.20,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 47,
@@ -608,7 +654,8 @@
         "mass"          : [107.8682],
         "radius"        : 145.4,
         "enegativity"   : 1.93,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 48,
@@ -621,7 +668,8 @@
         "mass"          : [112.411],
         "radius"        : 154,
         "enegativity"   : 1.69,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 2
     },
     {
         "number"        : 49,
@@ -634,7 +682,8 @@
         "mass"          : [114.818],
         "radius"        : 166,
         "enegativity"   : 1.78,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 50,
@@ -647,7 +696,8 @@
         "mass"          : [118.710],
         "radius"        : 162,
         "enegativity"   : 1.96,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 51,
@@ -660,7 +710,8 @@
         "mass"          : [121.760],
         "radius"        : 159,
         "enegativity"   : 2.05,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 52,
@@ -673,7 +724,8 @@
         "mass"          : [127.60],
         "radius"        : 160,
         "enegativity"   : 2.1,
-        "valence"       : [6]
+        "valence"       : [6],
+        "valence_max"   : 6
     },
     {
         "number"        : 53,
@@ -686,7 +738,8 @@
         "mass"          : [126.90447],
         "radius"        : 136,
         "enegativity"   : 2.66,
-        "valence"       : [7]
+        "valence"       : [7],
+        "valence_max"   : 7
     },
     {
         "number"        : 54,
@@ -699,7 +752,8 @@
         "mass"          : [131.293],
         "radius"        : 108,
         "enegativity"   : 2.6,
-        "valence"       : [8]
+        "valence"       : [8],
+        "valence_max"   : 8
     },
     {
         "number"        : 55,
@@ -712,7 +766,8 @@
         "mass"          : [132.9054519],
         "radius"        : 267,
         "enegativity"   : 0.79,
-        "valence"       : [1]
+        "valence"       : [1],
+        "valence_max"   : 1
     },
     {
         "number"        : 56,
@@ -725,7 +780,8 @@
         "mass"          : [137.327],
         "radius"        : 222,
         "enegativity"   : 0.89,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 2
     },
     {
         "number"        : 57,
@@ -738,7 +794,8 @@
         "mass"          : [138.90547],
         "radius"        : 187,
         "enegativity"   : 1.10,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 58,
@@ -751,7 +808,8 @@
         "mass"          : [140.116],
         "radius"        : 181,
         "enegativity"   : 1.12,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 59,
@@ -764,7 +822,8 @@
         "mass"          : [140.90765],
         "radius"        : 182,
         "enegativity"   : 1.13,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 60,
@@ -777,7 +836,8 @@
         "mass"          : [144.242],
         "radius"        : 182,
         "enegativity"   : 1.14,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 61,
@@ -790,7 +850,8 @@
         "mass"          : [144.9127],
         "radius"        : 183,
         "enegativity"   : 1.1,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 62,
@@ -803,7 +864,8 @@
         "mass"          : [150.36],
         "radius"        : 181,
         "enegativity"   : 1.17,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 63,
@@ -816,7 +878,8 @@
         "mass"          : [151.964],
         "radius"        : 199,
         "enegativity"   : 1.2,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 64,
@@ -829,7 +892,8 @@
         "mass"          : [157.25],
         "radius"        : 179,
         "enegativity"   : 1.20,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 65,
@@ -842,7 +906,8 @@
         "mass"          : [158.92535],
         "radius"        : 180,
         "enegativity"   : 1.2,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 66,
@@ -855,7 +920,8 @@
         "mass"          : [162.500],
         "radius"        : 180,
         "enegativity"   : 0.0,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 67,
@@ -868,7 +934,8 @@
         "mass"          : [164.93032],
         "radius"        : 179,
         "enegativity"   : 1.23,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 68,
@@ -881,7 +948,8 @@
         "mass"          : [167.259],
         "radius"        : 178,
         "enegativity"   : 1.24,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 69,
@@ -894,7 +962,8 @@
         "mass"          : [168.93421],
         "radius"        : 177,
         "enegativity"   : 1.25,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 70,
@@ -907,7 +976,8 @@
         "mass"          : [173.045],
         "radius"        : 194,
         "enegativity"   : 1.1,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 71,
@@ -920,7 +990,8 @@
         "mass"          : [174.9668],
         "radius"        : 175,
         "enegativity"   : 1.27,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 72,
@@ -933,7 +1004,8 @@
         "mass"          : [178.49],
         "radius"        : 167,
         "enegativity"   : 1.3,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 73,
@@ -946,7 +1018,8 @@
         "mass"          : [180.94788],
         "radius"        : 149,
         "enegativity"   : 1.5,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 74,
@@ -959,7 +1032,8 @@
         "mass"          : [183.84],
         "radius"        : 137,
         "enegativity"   : 2.3,
-        "valence"       : [6]
+        "valence"       : [6],
+        "valence_max"   : 6
     },
     {
         "number"        : 75,
@@ -972,7 +1046,8 @@
         "mass"          : [186.207],
         "radius"        : 137,
         "enegativity"   : 1.9,
-        "valence"       : [7]
+        "valence"       : [7],
+        "valence_max"   : 7
     },
     {
         "number"        : 76,
@@ -985,7 +1060,8 @@
         "mass"          : [190.23],
         "radius"        : 135,
         "enegativity"   : 2.2,
-        "valence"       : [8]
+        "valence"       : [8],
+        "valence_max"   : 8
     },
     {
         "number"        : 77,
@@ -998,7 +1074,8 @@
         "mass"          : [192.217],
         "radius"        : 136,
         "enegativity"   : 2.20,
-        "valence"       : [9]
+        "valence"       : [9],
+        "valence_max"   : 9
     },
     {
         "number"        : 78,
@@ -1011,7 +1088,8 @@
         "mass"          : [195.084],
         "radius"        : 139,
         "enegativity"   : 2.28,
-        "valence"       : [6]
+        "valence"       : [6],
+        "valence_max"   : 6
     },
     {
         "number"        : 79,
@@ -1024,7 +1102,8 @@
         "mass"          : [196.966570],
         "radius"        : 144,
         "enegativity"   : 2.64,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 80,
@@ -1037,7 +1116,8 @@
         "mass"          : [200.592],
         "radius"        : 157,
         "enegativity"   : 2.00,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 2
     },
     {
         "number"        : 81,
@@ -1050,7 +1130,8 @@
         "mass"          : [204.382, 204.385],
         "radius"        : 171,
         "enegativity"   : 1.62,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 82,
@@ -1063,7 +1144,8 @@
         "mass"          : [206.14, 207.94],
         "radius"        : 175,
         "enegativity"   : 2.33,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 83,
@@ -1076,7 +1158,8 @@
         "mass"          : [208.98040],
         "radius"        : 170,
         "enegativity"   : 2.02,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 84,
@@ -1089,7 +1172,8 @@
         "mass"          : [208.9824],
         "radius"        : 176,
         "enegativity"   : 2.3,
-        "valence"       : [6]
+        "valence"       : [6],
+        "valence_max"   : 6
     },
     {
         "number"        : 85,
@@ -1102,7 +1186,8 @@
         "mass"          : [210],
         "radius"        : 145,
         "enegativity"   : 2.2,
-        "valence"       : [7]
+        "valence"       : [7],
+        "valence_max"   : 7
     },
     {
         "number"        : 86,
@@ -1115,7 +1200,8 @@
         "mass"          : [222.0176],
         "radius"        : 214,
         "enegativity"   : 2.2,
-        "valence"       : [6]
+        "valence"       : [6],
+        "valence_max"   : 6
     },
     {
         "number"        : 87,
@@ -1128,7 +1214,8 @@
         "mass"          : [223],
         "radius"        : 290,
         "enegativity"   : 0.7,
-        "valence"       : [1]
+        "valence"       : [1],
+        "valence_max"   : 1
     },
     {
         "number"        : 88,
@@ -1141,7 +1228,8 @@
         "mass"          : [226.0254],
         "radius"        : 0,
         "enegativity"   : 0.9,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 2
     },
     {
         "number"        : 89,
@@ -1154,7 +1242,8 @@
         "mass"          : [227.0278],
         "radius"        : 188,
         "enegativity"   : 1.1,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 90,
@@ -1167,7 +1256,8 @@
         "mass"          : [232.03806],
         "radius"        : 180,
         "enegativity"   : 1.3,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 91,
@@ -1180,7 +1270,8 @@
         "mass"          : [231.03588],
         "radius"        : 161,
         "enegativity"   : 1.5,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 92,
@@ -1193,7 +1284,8 @@
         "mass"          : [238.02891],
         "radius"        : 138,
         "enegativity"   : 1.38,
-        "valence"       : [6]
+        "valence"       : [6],
+        "valence_max"   : 6
     },
     {
         "number"        : 93,
@@ -1206,7 +1298,8 @@
         "mass"          : [237.048],
         "radius"        : 130,
         "enegativity"   : 1.36,
-        "valence"       : [7]
+        "valence"       : [7],
+        "valence_max"   : 7
     },
     {
         "number"        : 94,
@@ -1219,7 +1312,8 @@
         "mass"          : [244.0642],
         "radius"        : 162,
         "enegativity"   : 1.28,
-        "valence"       : [8]
+        "valence"       : [8],
+        "valence_max"   : 8
     },
     {
         "number"        : 95,
@@ -1232,7 +1326,8 @@
         "mass"          : [243],
         "radius"        : 173,
         "enegativity"   : 1.3,
-        "valence"       : [7]
+        "valence"       : [7],
+        "valence_max"   : 7
     },
     {
         "number"        : 96,
@@ -1245,7 +1340,8 @@
         "mass"          : [247.0703],
         "radius"        : 299,
         "enegativity"   : 1.3,
-        "valence"       : [6]
+        "valence"       : [6],
+        "valence_max"   : 6
     },
     {
         "number"        : 97,
@@ -1258,7 +1354,8 @@
         "mass"          : [247.0703],
         "radius"        : 297,
         "enegativity"   : 1.3,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 98,
@@ -1271,7 +1368,8 @@
         "mass"          : [251.0796],
         "radius"        : 295,
         "enegativity"   : 1.3,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 99,
@@ -1284,7 +1382,8 @@
         "mass"          : [252.083],
         "radius"        : 245,
         "enegativity"   : 1.3,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 100,
@@ -1297,7 +1396,8 @@
         "mass"          : [257.0951],
         "radius"        : 290,
         "enegativity"   : 1.3,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 101,
@@ -1310,7 +1410,8 @@
         "mass"          : [258.1],
         "radius"        : 287,
         "enegativity"   : 1.3,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 102,
@@ -1323,7 +1424,8 @@
         "mass"          : [259.1009],
         "radius"        : 185,
         "enegativity"   : 1.3,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 103,
@@ -1336,7 +1438,8 @@
         "mass"          : [266],
         "radius"        : 282,
         "enegativity"   : 1.3,
-        "valence"       : [3]
+        "valence"       : [3],
+        "valence_max"   : 3
     },
     {
         "number"        : 104,
@@ -1349,7 +1452,8 @@
         "mass"          : [267],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : [4]
+        "valence"       : [4],
+        "valence_max"   : 4
     },
     {
         "number"        : 105,
@@ -1362,7 +1466,8 @@
         "mass"          : [268],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : [5]
+        "valence"       : [5],
+        "valence_max"   : 5
     },
     {
         "number"        : 106,
@@ -1375,7 +1480,8 @@
         "mass"          : [269],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : [6]
+        "valence"       : [6],
+        "valence_max"   : 6
     },
     {
         "number"        : 107,
@@ -1388,7 +1494,8 @@
         "mass"          : [267],
         "radius"        : 128,
         "enegativity"   : 0,
-        "valence"       : [7]
+        "valence"       : [7],
+        "valence_max"   : 7
     },
     {
         "number"        : 108,
@@ -1401,7 +1508,8 @@
         "mass"          : [269],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : [8]
+        "valence"       : [8],
+        "valence_max"   : 8
     },
     {
         "number"        : 109,
@@ -1414,7 +1522,8 @@
         "mass"          : [278],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     },
     {
         "number"        : 110,
@@ -1427,7 +1536,8 @@
         "mass"          : [281],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     },
     {
         "number"        : 111,
@@ -1440,7 +1550,8 @@
         "mass"          : [282],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     },
     {
         "number"        : 112,
@@ -1453,7 +1564,8 @@
         "mass"          : [285],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : [2]
+        "valence"       : [2],
+        "valence_max"   : 2
     },
     {
         "number"        : 113,
@@ -1466,7 +1578,8 @@
         "mass"          : [286],
         "radius"        : 170,
         "enegativity"   : 0,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     },
     {
         "number"        : 114,
@@ -1479,7 +1592,8 @@
         "mass"          : [289.190],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     },
     {
         "number"        : 115,
@@ -1492,7 +1606,8 @@
         "mass"          : [292],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     },
     {
         "number"        : 116,
@@ -1505,7 +1620,8 @@
         "mass"          : [293],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     },
     {
         "number"        : 117,
@@ -1518,7 +1634,8 @@
         "mass"          : [294],
         "radius"        : 0,
         "enegativity"   : 0,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     },
     {
         "number"        : 118,
@@ -1531,6 +1648,7 @@
         "mass"          : [294],
         "radius"        : 152,
         "enegativity"   : 0,
-        "valence"       : []
+        "valence"       : [],
+        "valence_max"   : 0
     }
 ]

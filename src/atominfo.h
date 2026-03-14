@@ -22,6 +22,7 @@ private:
     ElementTile *m_tile;
     QLineEdit *m_name;
     QLineEdit *m_id;
+    QLineEdit *m_valence;
     QLineEdit *m_X;
     QLineEdit *m_Y;
     QLineEdit *m_Z;

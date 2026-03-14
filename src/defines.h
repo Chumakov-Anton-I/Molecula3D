@@ -16,6 +16,7 @@ struct Element
     double radius;
     double electronegativity;
     QList<int> valences;
+    int max_valence;
 };
 
 const int LAST_ELEMENT_NUMBER = 118;    // Nowadays (2026) there are just 118 chemical elements

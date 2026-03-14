@@ -20,7 +20,7 @@ public:
 
     bool rayIntersect(const QVector3D &rayOrigin, const QVector3D &ray, double &dist);
 
-    QMatrix4x4 modelMatrix() const { return m_modelMatrix; }
+    //QMatrix4x4 modelMatrix() const { return m_modelMatrix; }
 
 private:
     void updateMarix();

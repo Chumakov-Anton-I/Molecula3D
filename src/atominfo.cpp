@@ -27,9 +27,12 @@ AtomInfo::AtomInfo(QWidget *parent)
     m_name->setReadOnly(true);
     m_id = new QLineEdit;
     m_id->setReadOnly(true);
+    m_valence = new QLineEdit;
+    m_valence->setReadOnly(true);
 
     form->addRow(tr("Name"), m_name);
     form->addRow(tr("Atom ID"), m_id);
+    form->addRow(tr("Valence"), m_valence);
 
     auto *groupPos = new QGroupBox(tr("Position"));
     info->addWidget(groupPos);
@@ -55,6 +58,7 @@ void AtomInfo::setAtom(Atom *atom)
     m_tile->setElement(e);
     m_name->setText(e.name);
     m_id->setText(atom->atomID());
+    m_valence->setText(QString::number(atom->valence()));
     auto pos = atom->position();
     m_X->setText(QString::number(pos.x(), 'f', 6));
     m_Y->setText(QString::number(pos.y(), 'f', 6));

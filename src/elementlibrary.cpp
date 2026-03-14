@@ -16,6 +16,7 @@
 #include <QHBoxLayout>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include <QComboBox>
 
 ElementLibrary::ElementLibrary(QWidget *parent)
     : QDialog{parent}
@@ -34,6 +35,9 @@ ElementLibrary::ElementLibrary(QWidget *parent)
 
     m_eTile = new ElementTile;
     elementsLayout->addWidget(m_eTile);
+
+    m_cbValence = new QComboBox;
+    topLayout->addWidget(m_cbValence);
 
     auto *groupPos = new QGroupBox(tr("Position"));
     topLayout->addWidget(groupPos);
@@ -96,6 +100,7 @@ void ElementLibrary::init()
         e.radius = item["radius"].toDouble(10.0);
         e.electronegativity = item["enegativity"].toDouble();
         e.valences = valences;
+        e.max_valence = item["valence_max"].toInt();
         m_database.insert(key, e);
     }
 
@@ -132,6 +137,7 @@ void ElementLibrary::accept()
     int numb = m_PTable->currentRow() + 1;
     QVector3D pos(m_X->value(), m_Y->value(), m_Z->value());
     auto *atom = new Atom(m_database.value(numb), pos);
+    atom->setValence(m_cbValence->currentData().toInt());
     QColor color(m_colorbase.value(numb));
     atom->setColor(QVector3D(color.redF(), color.greenF(), color.blueF()));
     setVisible(false);
@@ -141,7 +147,20 @@ void ElementLibrary::accept()
 void ElementLibrary::selectElement()
 {
     int key = m_PTable->currentRow() + 1;
-    m_eTile->setElement(m_database.value(key));
+    Element e = m_database.value(key);
+    m_eTile->setElement(e);
+    int v = e.max_valence;
+    m_cbValence->clear();
+    if (v == 0) {
+        m_cbValence->insertItem(0, "0");
+        m_cbValence->setDisabled(true);
+        return;
+    }
+    //QStringList list;
+    for (int i = 1; i <= v; ++i)
+        m_cbValence->insertItem(i - 1, QString::number(i), QVariant(i));
+    //m_cbValence->insertItems(0, list);
+    m_cbValence->setDisabled(false);
 }
 
 void ElementLibrary::closeEvent(QCloseEvent *event)

@@ -11,6 +11,7 @@ class QListWidgetItem;
 class QDoubleSpinBox;
 class Atom;
 class ElementTile;
+class QComboBox;
 
 class ElementLibrary : public QDialog
 {
@@ -39,6 +40,7 @@ private:
     QDoubleSpinBox *m_Y;
     QDoubleSpinBox *m_Z;
     QListWidget *m_PTable;
+    QComboBox *m_cbValence;
     ElementTile *m_eTile;
 };
 

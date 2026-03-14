@@ -13,7 +13,7 @@ in vec3 FragPos;
 uniform Material material;
 
 uniform vec3 light_color;
-uniform float alpha;
+//uniform float alpha;
 uniform vec3 light_pos;
 uniform vec3 view_pos;
 
@@ -33,5 +33,5 @@ void main(void)
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
     vec3 specular = light_color * (spec * material.specular);
 
-    gl_FragColor = vec4((ambient + diffuse + specular), alpha);
+    gl_FragColor = vec4((ambient + diffuse + specular), 1.0);
 }

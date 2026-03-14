@@ -40,5 +40,14 @@ void Atom::draw(Canvas3D *canvas)
         canvas->drawDot(m_matrix.map(QVector3D(len, 0.0f, 0.0f)), QVector3D(1.0f, 0.0f, 0.0f));
         canvas->drawDot(m_matrix.map(QVector3D(0.0f, len, 0.0f)), QVector3D(0.0f, 1.0f, 0.0f));
         canvas->drawDot(m_matrix.map(QVector3D(0.0f, 0.0f, len)), QVector3D(0.0f, 0.0f, 1.0f));
+        canvas->drawLineSegment(m_matrix.map(QVector3D()), m_matrix.map(QVector3D(len, 0.0f, 0.0f)), QVector3D(1.0f, 0.0f, 0.0f));
+        canvas->drawLineSegment(m_matrix.map(QVector3D()), m_matrix.map(QVector3D(0.0f, len, 0.0f)), QVector3D(0.0f, 1.0f, 0.0f));
+        canvas->drawLineSegment(m_matrix.map(QVector3D()), m_matrix.map(QVector3D(0.0f, 0.0f, len)), QVector3D(0.0f, 0.0f, 1.0f));
     }
+}
+
+void Atom::setValence(int valence)
+{
+    m_valence = valence;
+    // TODO: update
 }
